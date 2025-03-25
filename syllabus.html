@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Syllabus - Complete Analytics</title>
+    <link rel="stylesheet" href="syllabu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles for download buttons */
+        .download-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .download-btn {
+            background-color: #2563eb;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .download-btn:hover {
+            background-color: #1d4ed8;
+        }
+        
+        .download-btn i {
+            margin-right: 8px;
+        }
+        
+        .file-info {
+            font-size: 0.9em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="logo">Complete Analytics</div>
+        <nav>
+            <button id="menu-toggle">&#9776;</button>
+            <ul id="menu">
+                <li><a href="index.html" class="login-btn">Home</a></li>
+                <li><a href='syllabus.html' class="login-btn">Syllabus</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Syllabus Section -->
+    <section id="syllabus" class="syllabus">
+        <h2>Course Syllabus</h2>
+        <div class="course-syllabus">
+            <!-- Full Stack Development -->
+            <div class="course">
+                <h3 onclick="toggleSyllabus('full-stack')">
+                    <i class="fas fa-laptop-code"></i> Full Stack Development
+                    <span class="toggle-icon">+</span>
+                </h3>
+                <div id="full-stack" class="syllabus-content">
+                    <p><strong>Duration:</strong> 6 months</p>
+                    <p><strong>Fees:</strong> ₹25,000</p>
+                    <p><strong>Description:</strong> Learn front-end and back-end development with hands-on projects.</p>
+                    <p><strong>Prerequisites:</strong> Basic programming knowledge</p>
+                    <h4>Introduction:</h4>
+                    <p>This course provides a comprehensive understanding of full-stack development, covering both front-end and back-end technologies. You will learn to build dynamic web applications from scratch.</p>
+                    <h4>Syllabus:</h4>
+                    <ul>
+                        <li>HTML/CSS Basics</li>
+                        <li>JavaScript Fundamentals</li>
+                        <li>React.js for Frontend Development</li>
+                        <li>Node.js for Backend Development</li>
+                        <li>Express.js Framework</li>
+                        <li>MongoDB for Database Management</li>
+                        <li>REST APIs and Integration</li>
+                        <li>Git & Version Control</li>
+                        <li>Deployment and DevOps</li>
+                    </ul>
+                    <h4>Tools Covered:</h4>
+                    <div class="tools">
+                        <span><i class="fab fa-html5"></i> HTML5</span>
+                        <span><i class="fab fa-css3-alt"></i> CSS3</span>
+                        <span><i class="fab fa-js"></i> JavaScript</span>
+                        <span><i class="fab fa-react"></i> React</span>
+                        <span><i class="fab fa-node-js"></i> Node.js</span>
+                        <span><i class="fas fa-database"></i> MongoDB</span>
+                        <span><i class="fab fa-git"></i> Git</span>
+                    </div>
+                    <div class="download-section">
+                        <span class="file-info">PDF document (1.2MB)</span>
+                        <a href="downloads/full-stack-syllabus.pdf" class="download-btn" download="CompleteAnalytics-FullStack-Syllabus.pdf">
+                            <i class="fas fa-download"></i> Download Syllabus
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Science -->
+            <div class="course">
+                <h3 onclick="toggleSyllabus('data-science')">
+                    <i class="fas fa-chart-line"></i> Data Science
+                    <span class="toggle-icon">+</span>
+                </h3>
+                <div id="data-science" class="syllabus-content">
+                    <p><strong>Duration:</strong> 8 months</p>
+                    <p><strong>Fees:</strong> ₹26,000</p>
+                    <p><strong>Description:</strong> Master data analysis, machine learning, and data visualization.</p>
+                    <p><strong>Prerequisites:</strong> Basic statistics and programming</p>
+                    <h4>Introduction:</h4>
+                    <p>This course covers the fundamentals of data science, including data analysis, machine learning, and data visualization. You will work on real-world datasets and build predictive models.</p>
+                    <h4>Syllabus:</h4>
+                    <ul>
+                        <li>Python Programming</li>
+                        <li>Data Analysis with Pandas</li>
+                        <li>Data Visualization with Matplotlib and Seaborn</li>
+                        <li>Machine Learning Algorithms</li>
+                        <li>Deep Learning with TensorFlow</li>
+                        <li>Big Data with Hadoop and Spark</li>
+                        <li>SQL for Data Science</li>
+                        <li>Capstone Project</li>
+                    </ul>
+                    <h4>Tools Covered:</h4>
+                    <div class="tools">
+                        <span><i class="fab fa-python"></i> Python</span>
+                        <span><i class="fas fa-chart-bar"></i> Pandas</span>
+                        <span><i class="fas fa-chart-line"></i> Matplotlib</span>
+                        <span><i class="fas fa-brain"></i> TensorFlow</span>
+                        <span><i class="fas fa-database"></i> SQL</span>
+                        <span><i class="fab fa-aws"></i> AWS</span>
+                    </div>
+                    <div class="download-section">
+                        <span class="file-info">PDF document (1.5MB)</span>
+                        <a href="downloads/data-science-syllabus.pdf" class="download-btn" download="CompleteAnalytics-DataScience-Syllabus.pdf">
+                            <i class="fas fa-download"></i> Download Syllabus
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Digital Marketing -->
+            <div class="course">
+                <h3 onclick="toggleSyllabus('digital-marketing')">
+                    <i class="fas fa-bullhorn"></i> Digital Marketing
+                    <span class="toggle-icon">+</span>
+                </h3>
+                <div id="digital-marketing" class="syllabus-content">
+                    <p><strong>Duration:</strong> 4 months</p>
+                    <p><strong>Fees:</strong> ₹15,000</p>
+                    <p><strong>Description:</strong> Learn SEO, SEM, social media marketing, and analytics.</p>
+                    <p><strong>Prerequisites:</strong> No prior experience required</p>
+                    <h4>Introduction:</h4>
+                    <p>This course provides a comprehensive understanding of digital marketing strategies, including SEO, SEM, social media marketing, and analytics.</p>
+                    <h4>Syllabus:</h4>
+                    <ul>
+                        <li>Search Engine Optimization (SEO)</li>
+                        <li>Google Ads and PPC</li>
+                        <li>Social Media Marketing</li>
+                        <li>Content Marketing</li>
+                        <li>Email Marketing</li>
+                        <li>Web Analytics with Google Analytics</li>
+                        <li>Digital Marketing Strategy</li>
+                    </ul>
+                    <h4>Tools Covered:</h4>
+                    <div class="tools">
+                        <span><i class="fab fa-google"></i> Google Ads</span>
+                        <span><i class="fab fa-facebook"></i> Facebook Ads</span>
+                        <span><i class="fab fa-instagram"></i> Instagram Ads</span>
+                        <span><i class="fab fa-google"></i> Google Analytics</span>
+                        <span><i class="fas fa-envelope"></i> Mailchimp</span>
+                    </div>
+                    <div class="download-section">
+                        <span class="file-info">PDF document (0.9MB)</span>
+                        <a href="downloads/digital-marketing-syllabus.pdf" class="download-btn" download="CompleteAnalytics-DigitalMarketing-Syllabus.pdf">
+                            <i class="fas fa-download"></i> Download Syllabus
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cloud Computing -->
+            <div class="course">
+                <h3 onclick="toggleSyllabus('cloud-computing')">
+                    <i class="fas fa-cloud"></i> Cloud Computing
+                    <span class="toggle-icon">+</span>
+                </h3>
+                <div id="cloud-computing" class="syllabus-content">
+                    <p><strong>Duration:</strong> 5 months</p>
+                    <p><strong>Fees:</strong> ₹25,000</p>
+                    <p><strong>Description:</strong> Understand cloud platforms like AWS, Azure, and Google Cloud.</p>
+                    <p><strong>Prerequisites:</strong> Basic IT knowledge</p>
+                    <h4>Introduction:</h4>
+                    <p>This course provides a comprehensive understanding of cloud computing platforms, including AWS, Azure, and Google Cloud. You will learn to deploy, manage, and scale applications in the cloud.</p>
+                    <h4>Syllabus:</h4>
+                    <ul>
+                        <li>Introduction to Cloud Computing</li>
+                        <li>AWS Fundamentals</li>
+                        <li>Azure Fundamentals</li>
+                        <li>Google Cloud Platform (GCP)</li>
+                        <li>Cloud Storage and Databases</li>
+                        <li>Cloud Security and Compliance</li>
+                        <li>DevOps in the Cloud</li>
+                        <li>Capstone Project</li>
+                    </ul>
+                    <h4>Tools Covered:</h4>
+                    <div class="tools">
+                        <span><i class="fab fa-aws"></i> AWS</span>
+                        <span><i class="fab fa-microsoft"></i> Azure</span>
+                        <span><i class="fab fa-google"></i> Google Cloud</span>
+                        <span><i class="fab fa-docker"></i> Docker</span>
+                        <span><i class="fab fa-jenkins"></i> Jenkins</span>
+                    </div>
+                    <div class="download-section">
+                        <span class="file-info">PDF document (1.3MB)</span>
+                        <a href="downloads/cloud-computing-syllabus.pdf" class="download-btn" download="CompleteAnalytics-CloudComputing-Syllabus.pdf">
+                            <i class="fas fa-download"></i> Download Syllabus
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cybersecurity -->
+            <div class="course">
+                <h3 onclick="toggleSyllabus('cybersecurity')">
+                    <i class="fas fa-shield-alt"></i> Cybersecurity
+                    <span class="toggle-icon">+</span>
+                </h3>
+                <div id="cybersecurity" class="syllabus-content">
+                    <p><strong>Duration:</strong> 7 months</p>
+                    <p><strong>Fees:</strong> ₹30,000</p>
+                    <p><strong>Description:</strong> Learn ethical hacking, network security, and cryptography.</p>
+                    <p><strong>Prerequisites:</strong> Basic networking knowledge</p>
+                    <h4>Introduction:</h4>
+                    <p>This course covers the fundamentals of cybersecurity, including ethical hacking, network security, and cryptography. You will learn to protect systems and networks from cyber threats.</p>
+                    <h4>Syllabus:</h4>
+                    <ul>
+                        <li>Introduction to Cybersecurity</li>
+                        <li>Network Security</li>
+                        <li>Ethical Hacking</li>
+                        <li>Cryptography</li>
+                        <li>Penetration Testing</li>
+                        <li>Security Operations Center (SOC)</li>
+                        <li>Incident Response and Forensics</li>
+                        <li>Capstone Project</li>
+                    </ul>
+                    <h4>Tools Covered:</h4>
+                    <div class="tools">
+                        <span><i class="fas fa-shield-alt"></i> Wireshark</span>
+                        <span><i class="fas fa-user-secret"></i> Metasploit</span>
+                        <span><i class="fas fa-lock"></i> Nessus</span>
+                        <span><i class="fas fa-key"></i> OpenSSL</span>
+                        <span><i class="fas fa-network-wired"></i> Nmap</span>
+                    </div>
+                    <div class="download-section">
+                        <span class="file-info">PDF document (1.4MB)</span>
+                        <a href="downloads/cybersecurity-syllabus.pdf" class="download-btn" download="CompleteAnalytics-Cybersecurity-Syllabus.pdf">
+                            <i class="fas fa-download"></i> Download Syllabus
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Python Programming -->
+            <div class="course">
+                <h3 onclick="toggleSyllabus('python')">
+                    <i class="fab fa-python"></i> Python Programming
+                    <span class="toggle-icon">+</span>
+                </h3>
+                <div id="python" class="syllabus-content">
+                    <p><strong>Duration:</strong> 3 months</p>
+                    <p><strong>Fees:</strong> ₹23,000</p>
+                    <p><strong>Description:</strong> Learn Python from scratch and build real-world applications.</p>
+                    <p><strong>Prerequisites:</strong> No prior experience required</p>
+                    <h4>Introduction:</h4>
+                    <p>This course provides a comprehensive introduction to Python programming. You will learn Python basics, object-oriented programming, and build real-world applications using Flask/Django.</p>
+                    <h4>Syllabus:</h4>
+                    <ul>
+                        <li>Python Basics</li>
+                        <li>Data Types and Variables</li>
+                        <li>Control Structures</li>
+                        <li>Functions and Modules</li>
+                        <li>Object-Oriented Programming (OOP)</li>
+                        <li>Data Structures</li>
+                        <li>Web Development with Flask/Django</li>
+                        <li>Capstone Project</li>
+                    </ul>
+                    <h4>Tools Covered:</h4>
+                    <div class="tools">
+                        <span><i class="fab fa-python"></i> Python</span>
+                        <span><i class="fas fa-flask"></i> Flask</span>
+                        <span><i class="fab fa-django"></i> Django</span>
+                        <span><i class="fas fa-database"></i> SQLite</span>
+                        <span><i class="fab fa-git"></i> Git</span>
+                    </div>
+                    <div class="download-section">
+                        <span class="file-info">PDF document (1.1MB)</span>
+                        <a href="downloads/python-syllabus.pdf" class="download-btn" download="CompleteAnalytics-Python-Syllabus.pdf">
+                            <i class="fas fa-download"></i> Download Syllabus
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Machine Learning -->
+            <div class="course">
+                <h3 onclick="toggleSyllabus('machine-learning')">
+                    <i class="fas fa-brain"></i> Machine Learning
+                    <span class="toggle-icon">+</span>
+                </h3>
+                <div id="machine-learning" class="syllabus-content">
+                    <p><strong>Duration:</strong> 6 months</p>
+                    <p><strong>Fees:</strong> ₹35,000</p>
+                    <p><strong>Description:</strong> Master machine learning algorithms and techniques.</p>
+                    <p><strong>Prerequisites:</strong> Python and basic statistics</p>
+                    <h4>Introduction:</h4>
+                    <p>This course covers the fundamentals of machine learning, including supervised and unsupervised learning, neural networks, and model evaluation.</p>
+                    <h4>Syllabus:</h4>
+                    <ul>
+                        <li>Introduction to Machine Learning</li>
+                        <li>Supervised Learning</li>
+                        <li>Unsupervised Learning</li>
+                        <li>Neural Networks</li>
+                        <li>Model Evaluation and Optimization</li>
+                        <li>Natural Language Processing (NLP)</li>
+                        <li>Deep Learning</li>
+                        <li>Capstone Project</li>
+                    </ul>
+                    <h4>Tools Covered:</h4>
+                    <div class="tools">
+                        <span><i class="fab fa-python"></i> Python</span>
+                        <span><i class="fas fa-brain"></i> TensorFlow</span>
+                        <span><i class="fas fa-chart-line"></i> Scikit-learn</span>
+                        <span><i class="fas fa-project-diagram"></i> Keras</span>
+                        <span><i class="fas fa-database"></i> Pandas</span>
+                    </div>
+                    <div class="download-section">
+                        <span class="file-info">PDF document (1.6MB)</span>
+                        <a href="downloads/machine-learning-syllabus.pdf" class="download-btn" download="CompleteAnalytics-MachineLearning-Syllabus.pdf">
+                            <i class="fas fa-download"></i> Download Syllabus
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Artificial Intelligence -->
+            <div class="course">
+                <h3 onclick="toggleSyllabus('artificial-intelligence')">
+                    <i class="fas fa-robot"></i> Artificial Intelligence
+                    <span class="toggle-icon">+</span>
+                </h3>
+                <div id="artificial-intelligence" class="syllabus-content">
+                    <p><strong>Duration:</strong> 7 months</p>
+                    <p><strong>Fees:</strong> ₹30,000</p>
+                    <p><strong>Description:</strong> Explore AI concepts like NLP, computer vision, and robotics.</p>
+                    <p><strong>Prerequisites:</strong> Python and machine learning basics</p>
+                    <h4>Introduction:</h4>
+                    <p>This course provides a comprehensive understanding of artificial intelligence, including natural language processing, computer vision, and reinforcement learning.</p>
+                    <h4>Syllabus:</h4>
+                    <ul>
+                        <li>Introduction to Artificial Intelligence</li>
+                        <li>Natural Language Processing (NLP)</li>
+                        <li>Computer Vision</li>
+                        <li>Reinforcement Learning</li>
+                        <li>AI Ethics and Bias</li>
+                        <li>AI in Robotics</li>
+                        <li>Capstone Project</li>
+                    </ul>
+                    <h4>Tools Covered:</h4>
+                    <div class="tools">
+                        <span><i class="fab fa-python"></i> Python</span>
+                        <span><i class="fas fa-brain"></i> TensorFlow</span>
+                        <span><i class="fas fa-robot"></i> OpenAI Gym</span>
+                        <span><i class="fas fa-eye"></i> OpenCV</span>
+                        <span><i class="fas fa-language"></i> NLTK</span>
+                    </div>
+                    <div class="download-section">
+                        <span class="file-info">PDF document (1.7MB)</span>
+                        <a href="downloads/ai-syllabus.pdf" class="download-btn" download="CompleteAnalytics-AI-Syllabus.pdf">
+                            <i class="fas fa-download"></i> Download Syllabus
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Complete Analytics All rights reserved. Designed By Jeevan K S</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+
+    <script src="syllabus.js"></script>
+</body>
+</html>
