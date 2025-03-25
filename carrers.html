@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Analytics Career Opportunities</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-right: auto; /* Pushes nav to the right */
+        }
+
+        .logo span {
+            color: #3498db;
+        }
+
+        nav {
+            margin-left: auto; /* Ensures nav stays on the right */
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #3498db;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-left: auto; /* Ensures toggle stays on the right */
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Email Button Styles */
+        .email-btn {
+            background-color: #3498db;
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .email-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Sections */
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: #2c3e50;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+
+        .card ul {
+            list-style-position: inside;
+            margin-top: 1rem;
+        }
+
+        .card ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Hiring Process */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .step-number {
+            background-color: #3498db;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -20px;
+            width: 40px;
+            height: 2px;
+            background-color: #3498db;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .social-links {
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #3498db;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 1rem;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 0;
+                padding: 1rem;
+                border-bottom: 1px solid #eee;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                height: 70vh;
+            }
+
+            .process-steps {
+                flex-direction: column;
+            }
+
+            .step {
+                margin-bottom: 2rem;
+            }
+
+            .step:not(:last-child)::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Complete Analytics Career<span>Path</span></div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#courses">Courses</a></li>
+                    <li><a href="#process">Hiring Process</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Launch Your Dream Career</h1>
+            <p>Join our team of innovators and grow with us. 95% of our students get placed within 3 months of completing their courses.</p>
+            <button class="email-btn" onclick="window.location.href='mailto:careers@example.com?subject=Job Application&body=Please find my resume attached.';">Apply Now</button>
+        </div>
+    </section>
+
+    <!-- Company Culture Section -->
+    <section class="section" id="culture">
+        <h2 class="section-title">Our Work Culture & Values</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h3>Our Mission</h3>
+                <p>To empower individuals with the skills and opportunities they need to build rewarding careers in technology.</p>
+            </div>
+            <div class="card">
+                <h3>Our Values</h3>
+                <ul>
+                    <li>Innovation & Creativity</li>
+                    <li>Continuous Learning</li>
+                    <li>Collaboration</li>
+                    <li>Diversity & Inclusion</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Why Join Us?</h3>
+                <ul>
+                    <li>Competitive salaries</li>
+                    <li>Flexible work options</li>
+                    <li>Professional development</li>
+                    <li>Vibrant work culture</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hiring Process Section -->
+    <section class="section" id="process">
+        <h2 class="section-title">Our Hiring Process</h2>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Application</h3>
+                <p>Submit your resume and portfolio</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Screening</h3>
+                <p>Initial phone/video interview</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Assessment</h3>
+                <p>Technical or skill evaluation</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Interview</h3>
+                <p>Meet the team</p>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <h3>Offer</h3>
+                <p>Welcome aboard!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Submit Resume Section -->
+    <section class="section" id="submit-resume">
+        <h2 class="section-title">Ready to Join Us?</h2>
+        <div style="text-align: center;">
+            <button class="email-btn" onclick="window.location.href='mailto:careers@example.com?subject=Job Application&body=Please find my resume attached.';">Submit Your Resume</button>
+            <p style="margin-top: 1rem;">Or email directly to: completeanalyticscareers@.com</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo" style="color: white;">Complete Analytics Career<span style="color: #3498db;">Path</span></div>
+        <div class="social-links">
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2025 Complete Analytics CarrerPath. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Change header style on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Function to handle email button click
+        function sendEmail() {
+            const subject = "Job Application";
+            const body = "Please find my resume attached.";
+            window.location.href = `mailto:careers@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+    </script>
+</body>
+</html>

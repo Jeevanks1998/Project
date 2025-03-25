@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses & Batches - Complete Analytics</title>
+    <link rel="icon" type="image/x-icon" href="C:\Users\jeeva\OneDrive\Desktop\Freelance Project\images\1000004444-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+    <!-- Google Analytics 4 Tracking Code -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+</head>
+<body>
+    <!-- Header and Navigation -->
+    <header>
+        <div class="logo">Complete Analytics</div>
+        <button id="menu-toggle" aria-label="Toggle Menu">&#9776;</button>
+        <nav>
+            <ul id="menu">
+                <li><a href="index.html" class="login-btn">Home</a></li>
+                <li><a href="placements.html" class="login-btn">Placements</a></li>
+                <li><a href="syllabus.html" class="login-btn">Syllabus</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+        <h2>Our Courses</h2>
+        <div class="course-list">
+            <div class="course">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Full Stack Development</h3>
+                <p>Duration: 6 months | Fees: 25000</p>
+                <p>Description: Learn front-end and back-end development with hands-on projects.</p>
+                <p>Syllabus: HTML/CSS, JavaScript, Node.js, React, MongoDB</p>
+                <p>Prerequisites: Basic programming knowledge</p>
+                <button onclick="window.location.href='register.html?course=Full Stack Development'">Register</button>
+            </div>
+            <div class="course">
+                <i class="fas fa-chart-line"></i>
+                <h3>Data Science</h3>
+                <p>Duration: 8 months | Fees: 26000</p>
+                <p>Description: Master data analysis, machine learning, and data visualization.</p>
+                <p>Syllabus: Python, Pandas, NumPy, Machine Learning, Data Visualization</p>
+                <p>Prerequisites: Basic statistics and programming</p>
+                <button onclick="window.location.href='register.html?course=Data Science'">Register</button>
+            </div>
+            <div class="course">
+                <i class="fas fa-bullhorn"></i>
+                <h3>Digital Marketing</h3>
+                <p>Duration: 4 months | Fees: 15000</p>
+                <p>Description: Learn SEO, SEM, social media marketing, and analytics.</p>
+                <p>Syllabus: SEO, Google Ads, Social Media Marketing, Content Marketing</p>
+                <p>Prerequisites: No prior experience required</p>
+                <button onclick="window.location.href='register.html?course=Digital Marketing'">Register</button>
+            </div>
+            <div class="course">
+                <i class="fas fa-cloud"></i>
+                <h3>Cloud Computing</h3>
+                <p>Duration: 5 months | Fees: 25000</p>
+                <p>Description: Understand cloud platforms like AWS, Azure, and Google Cloud.</p>
+                <p>Syllabus: AWS, Azure, Google Cloud, DevOps</p>
+                <p>Prerequisites: Basic IT knowledge</p>
+                <button onclick="window.location.href='register.html?course=Cloud Computing'">Register</button>
+            </div>
+            <div class="course">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Cybersecurity</h3>
+                <p>Duration: 7 months | Fees: 30000</p>
+                <p>Description: Learn ethical hacking, network security, and cryptography.</p>
+                <p>Syllabus: Ethical Hacking, Network Security, Cryptography, Penetration Testing</p>
+                <p>Prerequisites: Basic networking knowledge</p>
+                <button onclick="window.location.href='register.html?course=Cybersecurity'">Register</button>
+            </div>
+            <div class="course">
+                <i class="fab fa-python"></i>
+                <h3>Python Programming</h3>
+                <p>Duration: 3 months | Fees: 23000</p>
+                <p>Description: Learn Python from scratch and build real-world applications.</p>
+                <p>Syllabus: Python Basics, OOP, Data Structures, Flask/Django</p>
+                <p>Prerequisites: No prior experience required</p>
+                <button onclick="window.location.href='register.html?course=Python'">Register</button>
+            </div>
+            <div class="course">
+                <i class="fas fa-brain"></i>
+                <h3>Machine Learning</h3>
+                <p>Duration: 6 months | Fees: 35000</p>
+                <p>Description: Master machine learning algorithms and techniques.</p>
+                <p>Syllabus: Supervised Learning, Unsupervised Learning, Neural Networks</p>
+                <p>Prerequisites: Python and basic statistics</p>
+                <button onclick="window.location.href='register.html?course=Machine Learning'">Register</button>
+            </div>
+            <div class="course">
+                <i class="fas fa-robot"></i>
+                <h3>Artificial Intelligence</h3>
+                <p>Duration: 7 months | Fees: 30000</p>
+                <p>Description: Explore AI concepts like NLP, computer vision, and robotics.</p>
+                <p>Syllabus: AI Basics, NLP, Computer Vision, Reinforcement Learning</p>
+                <p>Prerequisites: Python and machine learning basics</p>
+                <button onclick="window.location.href='register.html?course=Artificial Intelligence'">Register</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Batches Section -->
+    <section id="batches" class="batches">
+        <h2>Upcoming Batches</h2>
+        <div class="batch-list">
+            <div class="batch">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Full Stack Development</h3>
+                <p>Start Date: 1st November | Mode: Offline</p>
+                <button onclick="window.location.href='register.html?course=Full Stack Development'">Register</button>
+            </div>
+            <div class="batch">
+                <i class="fas fa-chart-line"></i>
+                <h3>Data Science</h3>
+                <p>Start Date: 5th November | Mode: Offline</p>
+                <button onclick="window.location.href='register.html?course=Data Science'">Register</button>
+            </div>
+            <div class="batch">
+                <i class="fas fa-bullhorn"></i>
+                <h3>Digital Marketing</h3>
+                <p>Start Date: 10th November | Mode: Offline</p>
+                <button onclick="window.location.href='register.html?course=Digital Marketing'">Register</button>
+            </div>
+            <div class="batch">
+                <i class="fas fa-cloud"></i>
+                <h3>Cloud Computing</h3>
+                <p>Start Date: 15th November | Mode: Offline</p>
+                <button onclick="window.location.href='register.html?course=Cloud Computing'">Register</button>
+            </div>
+            <div class="batch">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Cybersecurity</h3>
+                <p>Start Date: 20th November | Mode: Offline</p>
+                <button onclick="window.location.href='register.html?course=Cybersecurity'">Register</button>
+            </div>
+            <div class="batch">
+                <i class="fab fa-python"></i>
+                <h3>Python Programming</h3>
+                <p>Start Date: 25th November | Mode: Offline</p>
+                <button onclick="window.location.href='register.html?course=Python'">Register</button>
+            </div>
+            <div class="batch">
+                <i class="fas fa-brain"></i>
+                <h3>Machine Learning</h3>
+                <p>Start Date: 30th November | Mode: Offline</p>
+                <button onclick="window.location.href='register.html?course=Machine Learning'">Register</button>
+            </div>
+            <div class="batch">
+                <i class="fas fa-robot"></i>
+                <h3>Artificial Intelligence</h3>
+                <p>Start Date: 5th December | Mode: Online</p>
+                <button onclick="window.location.href='register.html?course=Artificial Intelligence'">Register</button>
+            </div>
+        </div>
+
+        <!-- Got Questions Section -->
+        <div class="got-questions">
+            <p>Got questions regarding upcoming batch dates?</p>
+            <button onclick="window.location.href='tel:+919886096090'">Talk to a Learning Consultant</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Complete Analytics. All rights reserved. Designed By Jeevan K S</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+    </footer>
+
+    <script src="index.js"></script>
+</body>
+</html>

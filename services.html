@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Management Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #007BFF;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            animation: slideInLeft 1s ease-in-out;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: background 0.3s ease, transform 0.3s ease;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .cta-button:hover {
+            background: #0056b3;
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Grid for Services and Projects */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-item, .project-item {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        .service-item:hover, .project-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-item h3, .project-item h3 {
+            color: #007BFF;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-item p, .project-item p {
+            color: #666;
+        }
+
+        /* Pop-Up Welcome Message */
+        .welcome-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1001;
+            animation: fadeIn 0.5s ease-in-out, scaleUp 0.5s ease-in-out;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .welcome-popup h2 {
+            margin-top: 0;
+            color: #007BFF;
+        }
+
+        .welcome-popup p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .welcome-popup .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .welcome-popup .close-btn:hover {
+            color: #007BFF;
+        }
+
+        .welcome-popup .logo {
+            width: 80px;
+            margin-bottom: 1rem;
+        }
+
+        .welcome-popup .call-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #28a745;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .welcome-popup .call-button:hover {
+            background: #218838;
+            transform: translateY(-3px);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* Advanced Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleUp {
+            from {
+                transform: translate(-50%, -50%) scale(0.9);
+            }
+            to {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header nav ul {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.75rem;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Icons */
+        .service-item i, .project-item i {
+            font-size: 2rem;
+            color: #007BFF;
+            margin-bottom: 1rem;
+        }
+
+        /* Social Media Icons in Footer */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #007BFF;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Welcome Pop-Up -->
+    <div class="overlay" id="overlay"></div>
+    <div class="welcome-popup" id="welcomePopup">
+        <button class="close-btn" id="closeBtn">&times;</button>
+        <img src="" alt="" class="logo">
+        <h2>Welcome to CompleteAnalytics Project Services!</h2>
+        <p>We're excited to have you here! Manage your projects, track progress, and collaborate with your team seamlessly. Need help? Click 'Get Started' or contact us anytime!</p>
+        <a href="#services" class="cta-button" id="getStartedBtn">Get Started</a>
+        <a href="tel:+919886096090" class="call-button">Call Us Now</a>
+    </div>
+
+    <header>
+        <div class="logo">Complete Analytics Project Services</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home">
+            <h1>Welcome to Our Project Management Services</h1>
+            <p>We help you manage your projects efficiently and effectively.</p>
+            <a href="#services" class="cta-button">Explore Our Services</a>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services">
+            <h2>Our Services</h2>
+            <div class="grid-container">
+                <div class="service-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Project Planning</h3>
+                    <p>We help you create detailed project plans to ensure smooth execution.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-tasks"></i>
+                    <h3>Task Management</h3>
+                    <p>Efficiently manage tasks and deadlines with our tools and expertise.</p>
+                </div>
+                <div class="service-item">
+                    <i class="fas fa-users"></i>
+                    <h3>Team Collaboration</h3>
+                    <p>Enhance team communication and collaboration for better results.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>Our Projects</h2>
+            <div class="grid-container">
+                <div class="project-item">
+                    <i class="fas fa-laptop-code"></i>
+                    <h3>Project 1: Website Redesign</h3>
+                    <p>Redesigned a client's website for better user experience.</p>
+                    <p><strong>Status:</strong> Completed</p>
+                </div>
+                <div class="project-item">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Project 2: Mobile App Development</h3>
+                    <p>Developed a mobile app for a startup.</p>
+                    <p><strong>Status:</strong> In Progress</p>
+                </div>
+                <div class="project-item">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>Project 3: Marketing Campaign</h3>
+                    <p>Created and executed a digital marketing campaign.</p>
+                    <p><strong>Status:</strong> Completed</p>
+                </div>
+                <!-- Add up to 10 projects here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Project Management Services. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript to handle the pop-up
+        const welcomePopup = document.getElementById('welcomePopup');
+        const overlay = document.getElementById('overlay');
+        const closeBtn = document.getElementById('closeBtn');
+        const getStartedBtn = document.getElementById('getStartedBtn');
+
+        // Show pop-up and overlay when the page loads
+        window.onload = () => {
+            welcomePopup.style.display = 'block';
+            overlay.style.display = 'block';
+        };
+
+        // Close pop-up and overlay when close button is clicked
+        closeBtn.addEventListener('click', () => {
+            welcomePopup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+
+        // Close pop-up and overlay when "Get Started" button is clicked
+        getStartedBtn.addEventListener('click', () => {
+            welcomePopup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+
+        // Close pop-up and overlay when clicking outside the pop-up
+        overlay.addEventListener('click', () => {
+            welcomePopup.style.display = 'none';
+            overlay.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

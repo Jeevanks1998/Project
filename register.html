@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Complete Analytics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+        
+        .register-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        /* Style the input container */
+        .input-container {
+            display: flex;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        
+        /* Style the form icons */
+        .icon {
+            padding: 10px;
+            background: dodgerblue;
+            color: white;
+            min-width: 50px;
+            text-align: center;
+        }
+        
+        /* Style the input fields */
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            outline: none;
+            border: 1px solid #ddd;
+        }
+        
+        .input-field:focus {
+            border: 2px solid dodgerblue;
+        }
+        
+        select.input-field {
+            height: 40px;
+        }
+        
+        /* Set a style for the submit button */
+        .btn {
+            background-color: dodgerblue;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        
+        .btn:hover {
+            opacity: 1;
+        }
+        
+        /* Success Message Pop-up */
+        #success-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            z-index: 1000;
+        }
+        
+        #success-popup h2 {
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+        
+        #success-popup p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        #close-popup {
+            padding: 0.75rem 1.5rem;
+            background-color: dodgerblue;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            .register-container {
+                margin: 20px;
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h1>Registration</h1>
+        <form id="registration-form">
+            <!-- Full Name -->
+            <div class="input-container">
+                <i class="fa fa-user icon"></i>
+                <input class="input-field" type="text" placeholder="Full Name" name="full-name" required>
+            </div>
+            
+            <!-- Email -->
+            <div class="input-container">
+                <i class="fa fa-envelope icon"></i>
+                <input class="input-field" type="email" placeholder="Email" name="email" required>
+            </div>
+            
+            <!-- Phone Number -->
+            <div class="input-container">
+                <i class="fa fa-phone icon"></i>
+                <input class="input-field" type="tel" placeholder="Phone Number" name="phone" required>
+            </div>
+            
+            <!-- College Name -->
+            <div class="input-container">
+                <i class="fa fa-university icon"></i>
+                <input class="input-field" type="text" placeholder="College Name" name="college-name" required>
+            </div>
+            
+            <!-- Stream -->
+            <div class="input-container">
+                <i class="fa fa-graduation-cap icon"></i>
+                <input class="input-field" type="text" placeholder="Stream (e.g., Computer Science)" name="stream" required>
+            </div>
+            
+            <!-- Passed Out Year -->
+            <div class="input-container">
+                <i class="fa fa-calendar icon"></i>
+                <input class="input-field" type="number" placeholder="Passed Out Year" name="passed-out-year" min="1900" max="2099" required>
+            </div>
+            
+            <!-- Work Experience (Optional) -->
+            <div class="input-container">
+                <i class="fa fa-briefcase icon"></i>
+                <input class="input-field" type="text" placeholder="Work Experience (if applicable)" name="work-experience">
+            </div>
+            
+            <!-- Company Name (Optional) -->
+            <div class="input-container">
+                <i class="fa fa-building icon"></i>
+                <input class="input-field" type="text" placeholder="Company Name (if applicable)" name="company-name">
+            </div>
+            
+            <!-- Course Selection -->
+            <div class="input-container">
+                <i class="fa fa-book icon"></i>
+                <select class="input-field" name="course" required>
+                    <option value="">-- Select a Course --</option>
+                    <option value="Full Stack Development" data-price="50000">Full Stack Development - ₹50,000</option>
+                    <option value="Data Science" data-price="60000">Data Science - ₹60,000</option>
+                    <option value="Digital Marketing" data-price="30000">Digital Marketing - ₹30,000</option>
+                    <option value="Cloud Computing" data-price="40000">Cloud Computing - ₹40,000</option>
+                    <option value="Cybersecurity" data-price="55000">Cybersecurity - ₹55,000</option>
+                    <option value="Python Programming" data-price="25000">Python Programming - ₹25,000</option>
+                    <option value="Machine Learning" data-price="65000">Machine Learning - ₹65,000</option>
+                    <option value="Artificial Intelligence" data-price="70000">Artificial Intelligence - ₹70,000</option>
+                </select>
+            </div>
+            
+            <!-- Batch Selection -->
+            <div class="input-container">
+                <i class="fa fa-calendar-check icon"></i>
+                <select class="input-field" name="batch" required>
+                    <option value="">-- Select a Batch --</option>
+                    <option value="1st November (Online)">1st November (Online)</option>
+                    <option value="5th November (Offline)">5th November (Offline)</option>
+                    <option value="10th November (Online)">10th November (Online)</option>
+                    <option value="15th November (Online)">15th November (Online)</option>
+                    <option value="20th November (Offline)">20th November (Offline)</option>
+                    <option value="25th November (Online)">25th November (Online)</option>
+                    <option value="30th November (Offline)">30th November (Offline)</option>
+                    <option value="5th December (Online)">5th December (Online)</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn">
+                <i class="fa fa-user-plus"></i> Register
+            </button>
+        </form>
+    </div>
+    
+    <!-- Success Pop-up -->
+    <div id="success-popup">
+        <h2>Registration Successful!</h2>
+        <p>You have successfully registered. You will receive a confirmation email shortly.</p>
+        <button id="close-popup">Close</button>
+    </div>
+    
+    <script>
+        // Handle Form Submission
+        document.getElementById('registration-form').onsubmit = function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            // Validate form fields
+            const form = document.getElementById('registration-form');
+            if (form.checkValidity()) {
+                // Show success pop-up
+                document.getElementById('success-popup').style.display = 'block';
+                // Redirect to home page after 3 seconds
+                setTimeout(function() {
+                    window.location.href = "index.html"; // Replace with your home page URL
+                }, 3000);
+            } else {
+                alert('Please fill out all required fields.');
+            }
+        };
+        
+        // Close Success Pop-up
+        document.getElementById('close-popup').onclick = function() {
+            document.getElementById('success-popup').style.display = 'none';
+        };
+    </script>
+</body>
+</html>
