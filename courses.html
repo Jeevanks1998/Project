@@ -7,6 +7,89 @@
     <link rel="icon" type="image/x-icon" href="C:\Users\jeeva\OneDrive\Desktop\Freelance Project\images\1000004444-removebg-preview.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="index.css">
+    <style>
+        /* Add these styles to fix the header layout */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        #menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        #menu {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #menu li {
+            margin-left: 1.5rem;
+        }
+        
+        #menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .login-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            background-color: #2563eb;
+            color: white !important;
+        }
+        
+        @media (max-width: 768px) {
+            #menu-toggle {
+                display: block;
+            }
+            
+            #menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: #fff;
+                flex-direction: column;
+                padding: 5rem 2rem;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                transition: right 0.3s ease;
+                z-index: 1000;
+            }
+            
+            #menu.active {
+                right: 0;
+            }
+            
+            #menu li {
+                margin: 1rem 0;
+            }
+        }
+    </style>
     <!-- Google Analytics 4 Tracking Code -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
@@ -20,13 +103,13 @@
     <!-- Header and Navigation -->
     <header>
         <div class="logo">Complete Analytics</div>
-        <button id="menu-toggle" aria-label="Toggle Menu">&#9776;</button>
         <nav>
             <ul id="menu">
                 <li><a href="index.html" class="login-btn">Home</a></li>
                 <li><a href="placements.html" class="login-btn">Placements</a></li>
                 <li><a href="syllabus.html" class="login-btn">Syllabus</a></li>
             </ul>
+            <button id="menu-toggle" aria-label="Toggle Menu">&#9776;</button>
         </nav>
     </header>
 
@@ -182,6 +265,11 @@
         </div>
     </footer>
 
-    <script src="index.js"></script>
+    <script>
+        // Toggle mobile menu
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('menu').classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
