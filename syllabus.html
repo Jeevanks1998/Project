@@ -6,6 +6,9 @@
     <title>Course Syllabus - Complete Analytics</title>
     <link rel="stylesheet" href="syllabu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Add jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <style>
         /* Additional styles for download buttons */
         .download-section {
@@ -27,6 +30,7 @@
             display: inline-flex;
             align-items: center;
             transition: background-color 0.3s;
+            cursor: pointer;
         }
         
         .download-btn:hover {
@@ -40,6 +44,67 @@
         .file-info {
             font-size: 0.9em;
             color: #666;
+        }
+        
+        /* Modal styles for download form */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .close-btn {
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        .submit-btn {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #1d4ed8;
         }
     </style>
 </head>
@@ -97,9 +162,9 @@
                     </div>
                     <div class="download-section">
                         <span class="file-info">PDF document (1.2MB)</span>
-                        <a href="downloads/full-stack-syllabus.pdf" class="download-btn" download="CompleteAnalytics-FullStack-Syllabus.pdf">
+                        <button class="download-btn" onclick="showDownloadForm('full-stack')">
                             <i class="fas fa-download"></i> Download Syllabus
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -139,9 +204,9 @@
                     </div>
                     <div class="download-section">
                         <span class="file-info">PDF document (1.5MB)</span>
-                        <a href="downloads/data-science-syllabus.pdf" class="download-btn" download="CompleteAnalytics-DataScience-Syllabus.pdf">
+                        <button class="download-btn" onclick="showDownloadForm('data-science')">
                             <i class="fas fa-download"></i> Download Syllabus
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -179,9 +244,9 @@
                     </div>
                     <div class="download-section">
                         <span class="file-info">PDF document (0.9MB)</span>
-                        <a href="downloads/digital-marketing-syllabus.pdf" class="download-btn" download="CompleteAnalytics-DigitalMarketing-Syllabus.pdf">
+                        <button class="download-btn" onclick="showDownloadForm('digital-marketing')">
                             <i class="fas fa-download"></i> Download Syllabus
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -220,9 +285,9 @@
                     </div>
                     <div class="download-section">
                         <span class="file-info">PDF document (1.3MB)</span>
-                        <a href="downloads/cloud-computing-syllabus.pdf" class="download-btn" download="CompleteAnalytics-CloudComputing-Syllabus.pdf">
+                        <button class="download-btn" onclick="showDownloadForm('cloud-computing')">
                             <i class="fas fa-download"></i> Download Syllabus
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -261,9 +326,9 @@
                     </div>
                     <div class="download-section">
                         <span class="file-info">PDF document (1.4MB)</span>
-                        <a href="downloads/cybersecurity-syllabus.pdf" class="download-btn" download="CompleteAnalytics-Cybersecurity-Syllabus.pdf">
+                        <button class="download-btn" onclick="showDownloadForm('cybersecurity')">
                             <i class="fas fa-download"></i> Download Syllabus
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -302,9 +367,9 @@
                     </div>
                     <div class="download-section">
                         <span class="file-info">PDF document (1.1MB)</span>
-                        <a href="downloads/python-syllabus.pdf" class="download-btn" download="CompleteAnalytics-Python-Syllabus.pdf">
+                        <button class="download-btn" onclick="showDownloadForm('python')">
                             <i class="fas fa-download"></i> Download Syllabus
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -343,9 +408,9 @@
                     </div>
                     <div class="download-section">
                         <span class="file-info">PDF document (1.6MB)</span>
-                        <a href="downloads/machine-learning-syllabus.pdf" class="download-btn" download="CompleteAnalytics-MachineLearning-Syllabus.pdf">
+                        <button class="download-btn" onclick="showDownloadForm('machine-learning')">
                             <i class="fas fa-download"></i> Download Syllabus
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -383,14 +448,39 @@
                     </div>
                     <div class="download-section">
                         <span class="file-info">PDF document (1.7MB)</span>
-                        <a href="downloads/ai-syllabus.pdf" class="download-btn" download="CompleteAnalytics-AI-Syllabus.pdf">
+                        <button class="download-btn" onclick="showDownloadForm('artificial-intelligence')">
                             <i class="fas fa-download"></i> Download Syllabus
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Download Form Modal -->
+    <div id="downloadModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h3>Download Syllabus</h3>
+            <p>Please fill in your details to download the syllabus:</p>
+            <form id="downloadForm">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <input type="hidden" id="courseId" name="courseId">
+                <button type="button" class="submit-btn" onclick="generatePDF()">Download Now</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -401,6 +491,8 @@
             <a href="#"><i class="fab fa-whatsapp"></i></a>
         </div>
     </footer>
+</body>
+</html>
 
     <script src="syllabus.js"></script>
 </body>
