@@ -1013,62 +1013,85 @@ footer {
     background-color: #0056b3;
 }
 
-/* Popup Styles */
+/* Doubts Popup Styles */
 .popup {
-    display: none;
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100px;
-    max-width: 90%;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 1000;
-    font-family: Arial, sans-serif;
-    animation: fadeIn 0.3s;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.popup.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 .popup-content {
     position: relative;
-    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    width: 100%;
     text-align: center;
+    z-index: 2;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
 }
 
-.popup h3 {
-    margin-top: 0;
+.popup.active .popup-content {
+    transform: scale(1);
+}
+
+.popup-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
     color: #333;
-    font-size: 18px;
 }
 
-.popup p {
+.popup-content p {
+    font-size: 1rem;
     color: #666;
-    margin-bottom: 20px;
-    font-size: 14px;
+    margin-bottom: 25px;
 }
 
 .popup-buttons {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
 }
 
 .popup-btn {
-    padding: 10px 15px;
+    padding: 12px 25px;
     border: none;
-    border-radius: 5px;
-    font-weight: bold;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 8px;
     transition: all 0.3s ease;
-    font-size: 14px;
-    width: 100%;
-    max-width: 200px;
 }
 
 .call-btn {
@@ -1076,51 +1099,60 @@ footer {
     color: white;
 }
 
-.call-btn:hover {
-    background-color: #3e8e41;
-}
-
 .chat-btn {
     background-color: #2196F3;
     color: white;
 }
 
-.chat-btn:hover {
-    background-color: #0b7dda;
+.popup-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
 }
 
 .close-popup {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 15px;
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 1.5rem;
     cursor: pointer;
-    color: #999;
+    color: #888;
+    transition: color 0.3s ease;
 }
 
 .close-popup:hover {
     color: #333;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, -60%); }
-    to { opacity: 1; transform: translate(-50%, -50%); }
+/* Responsive Adjustments */
+@media (min-width: 576px) {
+    .popup-content {
+        max-width: 400px;
+    }
 }
 
-/* Mobile-specific styles */
-@media (max-width: 600px) {
-    .popup {
-        width: calc(100% - 40px);
+@media (min-width: 768px) {
+    .popup-content {
+        padding: 40px;
     }
-
-    .popup-buttons {
-        flex-direction: column;
+    
+    .popup-content h3 {
+        font-size: 1.75rem;
     }
-
+    
+    .popup-content p {
+        font-size: 1.1rem;
+    }
+    
     .popup-btn {
-        width: 100%;
+        padding: 14px 30px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .popup-content {
+        max-width: 450px;
     }
 }
 
