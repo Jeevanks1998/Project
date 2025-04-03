@@ -254,39 +254,48 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Doubts Popup Functionality
-const doubtsPopup = document.getElementById('doubts-popup');
-const openChatbotBtn = document.getElementById('open-chatbot');
-const closeDoubtsPopup = document.getElementById('close-doubts-popup');
-
-// Show doubts popup after 5 seconds
-setTimeout(() => {
-    if (doubtsPopup) {
-        doubtsPopup.style.display = 'flex';
+// Popup functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const popup = document.getElementById('doubts-popup');
+    const closeBtn = document.getElementById('close-doubts-popup');
+    const openChatBtn = document.getElementById('open-chatbot');
+    
+    // Function to show popup
+    function showPopup() {
+        popup.classList.add('active');
+        document.body.style.overflow = 'hidden';
     }
-}, 5000);
-
-// Close doubts popup
-if (closeDoubtsPopup) {
-    closeDoubtsPopup.addEventListener('click', () => {
-        doubtsPopup.style.display = 'none';
-    });
-}
-
-// Open chatbot from doubts popup
-if (openChatbotBtn) {
-    openChatbotBtn.addEventListener('click', () => {
-        doubtsPopup.style.display = 'none';
-        // Assuming you have a chatbot toggle function
-        toggleChatbot();
-    });
-}
-
-// Close when clicking outside
-if (doubtsPopup) {
-    doubtsPopup.addEventListener('click', (e) => {
-        if (e.target === doubtsPopup) {
-            doubtsPopup.style.display = 'none';
+    
+    // Function to hide popup
+    function hidePopup() {
+        popup.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    // Close button event
+    closeBtn.addEventListener('click', hidePopup);
+    
+    // Overlay click event
+    popup.addEventListener('click', function(e) {
+        if (e.target === this || e.target.classList.contains('popup-overlay')) {
+            hidePopup();
         }
     });
-}
+    
+    // Chat button event (example)
+    openChatBtn.addEventListener('click', function() {
+        hidePopup();
+        // Add your chatbot opening logic here
+        console.log('Opening chatbot...');
+    });
+    
+    // Example: Show popup after 2 seconds
+    setTimeout(showPopup, 2000);
+    
+    // Example: Show popup when user tries to leave
+    window.addEventListener('mouseout', function(e) {
+        if (e.clientY < 0) {
+            showPopup();
+        }
+    });
+});
