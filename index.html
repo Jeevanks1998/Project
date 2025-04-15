@@ -42,43 +42,89 @@
         <button id="menu-toggle" aria-label="Toggle Menu">&#9776;</button>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <!-- Slide 1 -->
-            <div class="slide-container active">
-                <h1 class="slide-in">Transforming Ideas into Reality</h1>
-                <p class="slide-in">We specialize in delivering end-to-end project solutions and creating cutting-edge products that drive business success.</p>
+<!-- Background Elements -->
+<div class="bg-circle circle-1"></div>
+<div class="bg-circle circle-2"></div>
+<div class="bg-circle circle-3"></div>
+<div class="bg-circle circle-4"></div>
+
+<div class="particles" id="particles-js"></div>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <!-- Slide 1 - Transforming Ideas -->
+        <div class="slide-container active">
+            <div class="slide-text">
+                <h1>Transforming Ideas into Reality</h1>
+                <p>We specialize in delivering end-to-end project solutions and creating cutting-edge products that drive business success.</p>
+                <a href="#" class="btn">Learn more</a>
             </div>
-            
-            <!-- Slide 2 -->
-            <div class="slide-container">
-                <h1 class="slide-in">Expert Project Services & Innovative Product Development</h1>
-                <p class="slide-in">Whether you need professional project management or innovative product development, we are here to help you achieve your goals.</p>
-            </div>
-            
-            <!-- Slide 3 -->
-            <div class="slide-container">
-                <h1 class="slide-in">Empowering Your Future with Expert Learning</h1>
-                <p class="slide-in">Join us to transform your career with our industry-aligned courses.</p>
+            <div class="slide-image-container">
+                <div class="slide-image-wrapper">
+                    <div class="decorative-shape"></div>
+                    <img class="slide-image" src="https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Team working on project">
+                    <div class="icon-checkmark"></div>
+                </div>
             </div>
         </div>
+        
+        <!-- Slide 2 - Project Services -->
+        <div class="slide-container">
+            <div class="slide-text">
+                <h1>Expert Project Services & Innovative Product Development</h1>
+                <p>Whether you need professional project management or innovative product development, we are here to help you achieve your goals.</p>
+                <a href="#" class="btn">Discover More</a>
+            </div>
+            <div class="slide-image-container">
+                <div class="slide-image-wrapper">
+                    <div class="decorative-shape"></div>
+                    <img class="slide-image" src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Product development team">
+                    <div class="icon-checkmark"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slide 3 - Expert Learning -->
+        <div class="slide-container">
+            <div class="slide-text">
+                <h1>Empowering Your Future with Expert Learning</h1>
+                <p>Join us to transform your career with our industry-aligned courses.</p>
+                <a href="#" class="btn">Get Started</a>
+            </div>
+            <div class="slide-image-container">
+                <div class="slide-image-wrapper">
+                    <div class="decorative-shape"></div>
+                    <img class="slide-image" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Group learning session">
+                    <div class="icon-checkmark"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navigation Dots -->
+    <div class="slider-nav">
+        <div class="slider-dot active" data-index="0"></div>
+        <div class="slider-dot" data-index="1"></div>
+        <div class="slider-dot" data-index="2"></div>
+    </div>
 </section>
 
- <!-- Navigation Dots -->
- <div class="slider-nav">
-    <div class="slider-dot active" data-index="0"></div>
-    <div class="slider-dot" data-index="1"></div>
-    <div class="slider-dot" data-index="2"></div>
-</div>
+<!-- Quick Links Section - Text Version -->
+<section class="quick-links-text">
+    <div class="quick-links-container">
+        <h1>Quick Links</h1>
+        <div class="quick-links-list">
+            <ul>
+                <li><a href="product.html"><i class="fas fa-cube"></i> Products</a></li>
+                <li><a href="services.html"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li><a href="courses.html"><i class="fas fa-graduation-cap"></i> Courses</a></li>
+                <li><a href="carrers.html"><i class="fas fa-briefcase"></i> Careers</a></li>
+            </ul>
+        </div>
+    </div>
 </section>
-
-    <!-- Quick Links -->
-    <section class="quick-links">
-        <div class="link"><a href="services.html" target="_blank"><i class="fas fa-handshake"></i>Project Services</a></div>
-        <div class="link"><a href="product.html" target="_blank"><i class="fas fa-cogs"></i>Product Development</a></div>
-        <div class="link"><a href="courses.html" target="_blank"><i class="fas fa-book"></i>Courses</a></div>
-    </section>
+    
 
     <!-- Highlights -->
     <section class="highlights">
@@ -93,28 +139,82 @@
         </div>
     </section>
 
-    <!-- News/Updates -->
-    <section class="news">
-        <h2>News & Updates</h2>
+    <!-- News/Updates Section -->
+<section class="news">
+    <h2>News & Updates</h2>
+    <div class="news-container">
         <div class="news-item">
-            <i class="fas fa-bullhorn"></i>
-            <p>New Product Launch Coming Soon!</p>
+            <i class="fas fa-rocket"></i>
+            <div class="news-content">
+                <h3>Product Launch</h3>
+                <p>Our new AI-powered analytics tool launches next week!</p>
+            </div>
         </div>
+        
         <div class="news-item">
-            <i class="fas fa-calendar-check"></i>
-            <p>Project Management Workshop on 20th November</p>
-            <a href="workshop.html" class="register-button">Register Now</a>
+            <i class="fas fa-calendar-alt"></i>
+            <div class="news-content">
+                <h3>Workshop</h3>
+                <p>Join our Project Management Workshop on November 20th</p>
+            </div>
         </div>
-    </section>
+        
+        <div class="news-item">
+            <i class="fas fa-code-branch"></i>
+            <div class="news-content">
+                <h3>New Feature</h3>
+                <p>Version 3.2 with enhanced collaboration tools now available</p>
+            </div>
+        </div>
+        
+        <div class="news-item">
+            <i class="fas fa-trophy"></i>
+            <div class="news-content">
+                <h3>Award</h3>
+                <p>We won "Best Innovation 2023" at Tech Excellence Awards</p>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- About Us -->
     <section id="about" class="about">
-        <h2>About Us</h2>
-        <p>Our mission is to deliver exceptional project services and innovative product development solutions that empower businesses to thrive.</p>
-        <div class="metrics">
-            <div class="metric">100+ Successful Projects</div>
-            <div class="metric">50+ Innovative Products Developed</div>
-            <div class="metric">95% Client Satisfaction Rate</div>
+        <div class="container">
+            <h2 class="animate-fade-in">About Us</h2>
+            <p class="mission animate-fade-in" style="animation-delay: 0.2s;">Our mission is to deliver exceptional project services and innovative product development solutions that empower businesses to thrive.</p>
+            
+            <div class="about-content">
+                <div class="about-text animate-slide-left">
+                    <p class="dedicated">Dedicated to delivering end-to-end AI, ML, and Generative AI solutions tailored to solve complex analytics challenges across industries.</p>
+                    
+                    <div class="objectives">
+                        <h3>Our Objectives</h3>
+                        <ul>
+                            <li class="animate-list-item" style="--i:1">Empower businesses with data-driven intelligence that enhances decision-making, efficiency, and innovation.</li>
+                            <li class="animate-list-item" style="--i:2">Specialize in designing and deploying custom AI/ML models that provide actionable insights and future-ready strategies.</li>
+                            <li class="animate-list-item" style="--i:3">Committed to nurturing the next generation of AI talent through advanced training programs in AI, ML, and GenAI.</li>
+                            <li class="animate-list-item" style="--i:4">At DhishaAI, we aim to lead the AI transformation journey with precision, purpose, and people-centric innovation.</li>
+                            <li class="animate-list-item" style="--i:5">At DhishaAI, we aim to lead the AI revolution with impactful solutions, continuous learning, and innovation-driven product development.</li>
+                            <li class="animate-list-item" style="--i:6">Continuously innovate to build proprietary tools and frameworks that accelerate deployment, improve model performance, and ensure enterprise-grade reliability.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="metrics animate-slide-right">
+                    <div class="metric-box">
+                        <span class="metric-number">100+</span>
+                        <span class="metric-text">Successful Projects</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-number">50+</span>
+                        <span class="metric-text">Innovative Products Developed</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-number">95%</span>
+                        <span class="metric-text">Client Satisfaction Rate</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -279,51 +379,74 @@
         </div>
     </footer>
 
-    <!-- Chatbot Container -->
-    <div id="chatbot-container">
-        <div id="chatbot-header">
-            <h3>Chat with Us</h3>
-            <button id="close-chatbot">&times;</button>
+   <!-- Chatbot Container -->
+   <div id="chatbot-container">
+    <div id="chatbot-header">
+        <div class="chatbot-avatar">
+            <img src="https://cdn-icons-png.flaticon.com/512/4712/4712035.png" alt="AI Assistant">
         </div>
-        <div id="chatbot-body">
-            <div id="chatbot-messages">
-                <div class="message bot-message">Hello! How can I help you today?</div>
-                <!-- Predefined Questions -->
-                <div class="quick-questions">
-                    <button class="quick-question-btn" data-question="What services do you offer?">What services do you offer?</button>
-                    <button class="quick-question-btn" data-question="How can I get started?">How can I get started?</button>
-                    <button class="quick-question-btn" data-question="What is your process?">What is your process?</button>
-                </div>
-            </div>
-            <div id="chatbot-input">
-                <input type="text" id="chatbot-input-field" placeholder="Type your message...">
-                <button id="chatbot-send-btn"><i class="fas fa-paper-plane"></i></button>
-            </div>
+        <div class="chatbot-info">
+            <h3>Complete Analytics AI Assistant</h3>
+            <p>Ask me anything - I'll respond to every question!</p>
         </div>
+        <button id="close-chatbot">&times;</button>
     </div>
-
-    <!-- Chatbot Toggle Button -->
-    <button id="chatbot-toggle-btn">
-        <i class="fas fa-comments"></i>
-    </button>
-
-    <!-- Doubts Popup -->
-<div id="doubts-popup" class="popup">
-    <div class="popup-overlay"></div>
-    <div class="popup-content">
-        <h3>Having any doubts?</h3>
-        <p>We're here to help you!</p>
-        <div class="popup-buttons">
-            <button onclick="window.location.href='tel:+11234567890'" class="popup-btn call-btn">
-                <i class="fas fa-phone"></i> Call Us
-            </button>
-            <button id="open-chatbot" class="popup-btn chat-btn">
-                <i class="fas fa-comments"></i> Chat Now
-            </button>
+    <div id="chatbot-body">
+        <div id="chatbot-messages">
+            <div class="message bot-message">
+                <div class="message-content">
+                    Hello! I'm your AI assistant for Complete Analytics. I'm here to answer any and all questions you have about:
+                    
+                    • Our courses and training programs
+                    • Project and product services
+                    • Company information
+                    • Enrollment procedures
+                    • Placements and career opportunities
+                    • And anything else you'd like to know!
+                    
+                    No question is too big or small - ask me anything!
+                </div>
+                <div class="message-time">Just now</div>
+            </div>
+            
+            <!-- Quick Questions -->
+            <div class="quick-questions">
+                <p>Try asking me:</p>
+                <button class="quick-question-btn" data-question="What courses do you offer?">
+                    What courses do you offer?
+                </button>
+                <button class="quick-question-btn" data-question="Tell me about your Full Stack Development course">
+                    Tell me about Full Stack Development
+                </button>
+                <button class="quick-question-btn" data-question="When is the next Data Science batch starting?">
+                    When is next Data Science batch?
+                </button>
+                <button class="quick-question-btn" data-question="Tell me about your placement services">
+                    About placement services
+                </button>
+                <button class="quick-question-btn" data-question="What companies hire from your institute?">
+                    Hiring companies
+                </button>
+                <button class="quick-question-btn" data-question="How can I contact your team?">
+                    Contact information
+                </button>
+                <button class="end-chat-btn" id="end-chat-btn">
+                    End Chat
+                </button>
+            </div>
         </div>
-        <button id="close-doubts-popup" class="close-popup">&times;</button>
+        <div id="chatbot-input">
+            <input type="text" id="chatbot-input-field" placeholder="Ask me anything..." autocomplete="off">
+            <button id="chatbot-send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
     </div>
 </div>
+
+<!-- Chatbot Toggle Button -->
+<button id="chatbot-toggle-btn">
+    <i class="fas fa-robot"></i>
+    <span class="notification-badge"></span>
+</button>
 
     <script src="index.js"></script>
 </body>
