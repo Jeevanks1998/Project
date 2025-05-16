@@ -314,62 +314,45 @@
       color: #fff;
     }
 
-    /* Footer */
-    footer {
-      background: linear-gradient(135deg, #333, #555);
-      color: #fff;
-      padding: 40px 20px;
-      text-align: center;
-    }
+    /* Footer Styling */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+}
 
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      max-width: 1000px;
-      margin: 0 auto 30px;
-      padding-bottom: 30px;
-      border-bottom: 1px solid #444;
-    }
+.social-links {
+    margin-top: 10px;
+}
 
-    .footer-section {
-      text-align: center;
-    }
+.social-links a {
+    color: #fff;
+    margin: 0 10px;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
 
-    .footer-section h3 {
-      font-size: clamp(1.2rem, 3vw, 1.5rem);
-      margin-bottom: 20px;
-      color: #ff6347;
-    }
+.social-links a:hover {
+    color: #0073b1; /* LinkedIn Blue */
+}
 
-    .footer-section p {
-      font-size: clamp(0.9rem, 2vw, 1rem);
-      color: #ddd;
-      margin-bottom: 10px;
-    }
+.social-links a:hover .fa-instagram {
+    color: #e4405f; /* Instagram Pink */
+}
 
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-    }
+.social-links a:hover .fa-whatsapp {
+    color: #25d366; /* WhatsApp Green */
+}
 
-    .social-links a {
-      color: #fff;
-      font-size: 1.5rem;
-      transition: color 0.3s ease;
-    }
+.social-links a:hover .fa-twitter {
+    color: #1da1f2; /* Twitter Blue */
+}
 
-    .social-links a:hover {
-      color: #ff6347;
-    }
-
-    footer p {
-      font-size: clamp(0.9rem, 2vw, 1rem);
-      color: #ccc;
-      margin-top: 20px;
-    }
+.social-links a:hover .fa-facebook {
+    color: #1877f2; /* Facebook Blue */
+}
 
     /* Animations */
     @keyframes fadeInDown {
@@ -502,150 +485,100 @@
     </section>
 
     <!-- Products Section -->
-    <section id="products" class="section">
-      <h2>Our Products</h2>
-      <div class="product-grid">
-        <!-- Product 1 -->
-        <div class="product-card">
-          <div class="product-icon">
-            <i class="fas fa-home"></i>
-          </div>
-          <h3>SmartHome Pro</h3>
-          <p>A smart home automation system that integrates lighting, security, and energy management.</p>
-          <ul>
-            <li>Remote control, energy monitoring</li>
-            <li>Convenience, energy savings</li>
-            <li>IoT, AI, Cloud Computing</li>
-          </ul>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="product-card">
-          <div class="product-icon">
-            <i class="fas fa-heartbeat"></i>
-          </div>
-          <h3>HealthTrack</h3>
-          <p>A wearable device that monitors health metrics like heart rate, sleep, and activity.</p>
-          <ul>
-            <li>Real-time monitoring, sleep analysis</li>
-            <li>Improved health awareness</li>
-            <li>IoT, Machine Learning</li>
-          </ul>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card">
-          <div class="product-icon">
-            <i class="fas fa-graduation-cap"></i>
-          </div>
-          <h3>EduLearn</h3>
-          <p>An e-learning platform offering interactive courses and certifications.</p>
-          <ul>
-            <li>Interactive lessons, quizzes</li>
-            <li>Flexible learning</li>
-            <li>React, Node.js, MongoDB</li>
-          </ul>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card">
-          <div class="product-icon">
-            <i class="fas fa-charging-station"></i>
-          </div>
-          <h3>GreenCharge</h3>
-          <p>Solar-powered charging stations for electric vehicles.</p>
-          <ul>
-            <li>Solar-powered, fast charging</li>
-            <li>Eco-friendly, cost-effective</li>
-            <li>IoT, Solar Energy</li>
-          </ul>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product-card">
-          <div class="product-icon">
-            <i class="fas fa-robot"></i>
-          </div>
-          <h3>AI Assistant</h3>
-          <p>An intelligent virtual assistant for businesses and personal use.</p>
-          <ul>
-            <li>Natural language processing</li>
-            <li>Task automation, scheduling</li>
-            <li>Machine Learning, NLP</li>
-          </ul>
-        </div>
-
-        <!-- Product 6 -->
-        <div class="product-card">
-          <div class="product-icon">
-            <i class="fas fa-shopping-cart"></i>
-          </div>
-          <h3>ShopEasy</h3>
-          <p>An e-commerce platform with advanced analytics and recommendations.</p>
-          <ul>
-            <li>Personalized recommendations</li>
-            <li>Inventory management</li>
-            <li>React, Node.js, MongoDB</li>
-          </ul>
-        </div>
-
-        <!-- Product 7 -->
-        <div class="product-card">
-          <div class="product-icon">
-            <i class="fas fa-video"></i>
-          </div>
-          <h3>VideoStream</h3>
-          <p>A high-performance video streaming platform with low latency.</p>
-          <ul>
-            <li>4K streaming, adaptive bitrate</li>
-            <li>Content delivery network</li>
-            <li>WebRTC, HLS, DASH</li>
-          </ul>
-        </div>
-
-        <!-- Product 8 -->
-        <div class="product-card">
-          <div class="product-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3>AnalyticsPro</h3>
-          <p>Advanced business intelligence and data visualization platform.</p>
-          <ul>
-            <li>Real-time dashboards</li>
-            <li>Predictive analytics</li>
-            <li>Python, D3.js, Big Data</li>
-          </ul>
-        </div>
-
-        <!-- Product 9 -->
-        <div class="product-card">
-          <div class="product-icon">
-            <i class="fas fa-mobile-alt"></i>
-          </div>
-          <h3>MobilePay</h3>
-          <p>Secure mobile payment solution for businesses and consumers.</p>
-          <ul>
-            <li>Contactless payments</li>
-            <li>Fraud detection</li>
-            <li>Blockchain, Encryption</li>
-          </ul>
-        </div>
-
-        <!-- Product 10 -->
-        <div class="product-card">
-          <div class="product-icon">
-            <i class="fas fa-cloud"></i>
-          </div>
-          <h3>CloudSync</h3>
-          <p>Enterprise-grade cloud storage and collaboration platform.</p>
-          <ul>
-            <li>File sharing, version control</li>
-            <li>End-to-end encryption</li>
-            <li>AWS, Azure, GCP</li>
-          </ul>
-        </div>
+<section id="products" class="section">
+  <h2>Our Industry Solutions</h2>
+  <div class="product-grid">
+    <!-- Retail Solution -->
+    <div class="product-card">
+      <div class="product-icon">
+        <i class="fas fa-shopping-bag"></i>
       </div>
-    </section>
+      <h3>Retail Intelligence</h3>
+      <p>AI-powered solutions to redefine customer experiences and optimize retail operations.</p>
+      <ul>
+        <li>Personalized shopping journeys</li>
+        <li>Smart product recommendations</li>
+        <li>Demand forecasting</li>
+        <li>Inventory optimization</li>
+      </ul>
+    </div>
+
+    <!-- CPG Solution -->
+    <div class="product-card">
+      <div class="product-icon">
+        <i class="fas fa-box-open"></i>
+      </div>
+      <h3>CPG Demand Sensing</h3>
+      <p>Real-time demand sensing and inventory optimization for consumer packaged goods.</p>
+      <ul>
+        <li>Accurate demand forecasting</li>
+        <li>Supply chain optimization</li>
+        <li>Market trend analysis</li>
+        <li>Promotion effectiveness</li>
+      </ul>
+    </div>
+
+    <!-- Manufacturing Solution -->
+    <div class="product-card">
+      <div class="product-icon">
+        <i class="fas fa-industry"></i>
+      </div>
+      <h3>Smart Manufacturing</h3>
+      <p>AI-driven quality control and predictive maintenance for manufacturing excellence.</p>
+      <ul>
+        <li>Defect detection with computer vision</li>
+        <li>Predictive maintenance</li>
+        <li>Process optimization</li>
+        <li>Quality assurance</li>
+      </ul>
+    </div>
+
+    <!-- Healthcare Solution -->
+    <div class="product-card">
+      <div class="product-icon">
+        <i class="fas fa-heartbeat"></i>
+      </div>
+      <h3>Healthcare Analytics</h3>
+      <p>Personalized patient care through AI-powered diagnostics and treatment planning.</p>
+      <ul>
+        <li>Personalized treatment paths</li>
+        <li>Early disease detection</li>
+        <li>Patient outcome prediction</li>
+        <li>Resource optimization</li>
+      </ul>
+    </div>
+
+    <!-- Education Solution -->
+    <div class="product-card">
+      <div class="product-icon">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <h3>EdTech Solutions</h3>
+      <p>AI-driven personalized learning platforms for educational institutions.</p>
+      <ul>
+        <li>Adaptive learning paths</li>
+        <li>Student performance analytics</li>
+        <li>Early intervention systems</li>
+        <li>Curriculum optimization</li>
+      </ul>
+    </div>
+
+    <!-- Government Solution -->
+    <div class="product-card">
+      <div class="product-icon">
+        <i class="fas fa-landmark"></i>
+      </div>
+      <h3>GovTech Solutions</h3>
+      <p>Transforming public services through AI-powered citizen engagement platforms.</p>
+      <ul>
+        <li>Automated citizen services</li>
+        <li>Predictive resource allocation</li>
+        <li>Fraud detection</li>
+        <li>Service optimization</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
     <!-- Industries Served Section -->
     <section id="industries" class="section">
@@ -718,36 +651,17 @@
     </div>
   </div>
 
-  <!-- Footer -->
-  <footer id="contact">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>Contact Us</h3>
-        <p>Complete Analytics</p>
-        <p>123 Innovation Drive</p>
-        <p>Tech City, TX 75001</p>
-        <p>Email: info@completeanalytics.com</p>
-        <p>Phone: +1 (123) 456-7890</p>
-      </div>
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <p><a href="#about">About Us</a></p>
-        <p><a href="#services">Services</a></p>
-        <p><a href="#products">Products</a></p>
-        <p><a href="#testimonials">Testimonials</a></p>
-      </div>
-      <div class="footer-section">
-        <h3>Follow Us</h3>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-      </div>
-    </div>
-    <p>&copy; 2025 Complete Analytics. All rights reserved. Designed by Jeevan K S</p>
-  </footer>
+ <!-- Footer -->
+ <footer>
+  <p>© 2025 Complete Analytics. All rights reserved. Designed By Jeevan K S</p>
+  <div class="social-links">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+  </div>
+</footer>
 
   <script>
     // Simple script to handle smooth scrolling for anchor links
