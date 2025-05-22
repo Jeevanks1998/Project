@@ -479,7 +479,7 @@ nav ul li a:hover {
 
 /* Quick Links Section - Text Version */
 .quick-links-text {
-    padding: 2.0rem 0;
+    padding: 2rem 0;
     background-color: #f9f9f9;
     text-align: center;
 }
@@ -494,7 +494,7 @@ nav ul li a:hover {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 100px;
+    gap: 20px; /* Reduced from 100px to 20px */
     list-style: none;
     padding: 0;
     margin: 20px 0 0;
@@ -502,6 +502,7 @@ nav ul li a:hover {
 
 .quick-links-list li {
     margin: 0;
+    flex: 0 0 auto;
 }
 
 .quick-links-list a {
@@ -511,17 +512,44 @@ nav ul li a:hover {
     text-decoration: none;
     color: #333;
     font-weight: 500;
-    font-size: 1.5rem;
+    font-size: 1.1rem; /* Slightly reduced */
     transition: color 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 4px;
 }
 
 .quick-links-list a:hover {
     color: #4a6bff;
+    background-color: rgba(74, 107, 255, 0.1);
 }
 
 .quick-links-list i {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #4a6bff;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .quick-links-list ul {
+        flex-direction: column;
+        gap: 10px; /* Smaller gap for mobile */
+        align-items: center;
+    }
+    
+    .quick-links-list a {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+        padding: 10px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .quick-links-list a {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
 }
 
 /* Highlights Section Styling */
@@ -1554,6 +1582,76 @@ footer {
 
 .action-btn.primary:hover {
     background-color: #0a5bd8;
+}
+
+
+/* Chatbot Mobile Adjustments */
+@media (max-width: 768px) {
+    #chatbot-container {
+        width: 90%;
+        max-width: 350px;
+        right: 5%;
+        border-radius: 15px;
+        height: 70vh;
+        max-height: 500px;
+    }
+    
+    #chatbot-toggle-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .chatbot-info h3 {
+        font-size: 14px;
+    }
+    
+    .chatbot-info p {
+        font-size: 10px;
+    }
+    
+    .message-content {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+    
+    #chatbot-input-field {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    #chatbot-send-btn {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    #chatbot-container {
+        width: 95%;
+        right: 2.5%;
+        height: 65vh;
+    }
+    
+    .chatbot-avatar {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .message-content {
+        max-width: 90%;
+    }
+    
+    .quick-question-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+    
+    .end-chat-btn {
+        font-size: 12px;
+    }
 }
 
 /* Talk to a Learning Consultant Button */
