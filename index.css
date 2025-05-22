@@ -1654,83 +1654,128 @@ button[onclick*="tel:"]:active {
 
 /* Mobile Responsive Adjustments */
 @media (max-width: 768px) {
-    /* Hero Section */
+    /* Hero Section - Sequential Appearance (no animations) */
     .hero {
         height: auto;
         min-height: 100vh;
         padding: 60px 20px 40px;
+        animation: none !important;
     }
-    
-    .hero-content {
-        padding: 0;
-    }
-    
+
     .slide-container {
         flex-direction: column;
         position: relative;
         height: auto;
         padding-bottom: 60px;
+        opacity: 1 !important;
+        animation: none !important;
     }
-    
+
     .slide-text {
         width: 100%;
         padding: 0;
         margin-bottom: 30px;
-        order: 2;
+        order: 1;
+        text-align: center;
+        opacity: 1 !important;
         transform: none !important;
+        animation: none !important;
     }
-    
+
     .slide-image-container {
         width: 100%;
         height: auto;
         margin-bottom: 30px;
-        order: 1;
+        order: 2;
+        display: flex;
+        justify-content: center;
+        opacity: 1 !important;
         transform: none !important;
+        animation: none !important;
     }
-    
+
     .slide-image-wrapper {
         width: 100%;
         max-width: 300px;
         margin: 0 auto;
     }
-    
+
     .slide-image {
         width: 100%;
         height: auto;
         max-height: 300px;
+        transform: none !important;
     }
-    
-    .decorative-shape {
-        width: 100%;
-        height: 100%;
-        max-width: 320px;
-        max-height: 320px;
-    }
-    
+
     .slide-container h1 {
         font-size: 1.8rem;
-        text-align: center;
+        animation: none !important;
     }
-    
+
     .slide-container p {
         font-size: 1rem;
-        text-align: center;
+        animation: none !important;
     }
-    
+
     .btn {
         display: block;
-        margin: 0 auto;
+        margin: 20px auto 0;
         width: fit-content;
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
     }
-    
-    .slider-nav {
-        position: absolute;
-        bottom: 20px;
-        left: 0;
+
+    /* Remove all decorative animations for mobile */
+    .bg-circle,
+    .particle,
+    .decorative-shape,
+    .icon-checkmark,
+    .slider-dot::before {
+        display: none !important;
+        animation: none !important;
+    }
+
+    /* Disable hover effects on mobile */
+    .card:hover,
+    .service-item:hover,
+    .testimonial:hover,
+    .address:hover,
+    .course:hover,
+    .batch:hover,
+    .placement-stats:hover,
+    .slide:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Chatbot adjustments */
+    #chatbot-container {
+        width: 100%;
         right: 0;
-        transform: none;
+        border-radius: 0;
+    }
+
+    /* Header adjustments */
+    header {
+        flex-direction: column;
+        padding: 10px;
     }
     
+    .logo {
+        margin-bottom: 10px;
+    }
+    
+    nav {
+        width: 100%;
+    }
+    
+    #menu-toggle {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
     /* Quick Links */
     .quick-links-list ul {
         gap: 20px;
@@ -1795,6 +1840,14 @@ button[onclick*="tel:"]:active {
     .social-links {
         flex-direction: column;
     }
+
+    /* Reduced motion preference */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation: none !important;
+            transition: none !important;
+        }
+    }
 }
 
 /* Smaller mobile devices */
@@ -1802,61 +1855,28 @@ button[onclick*="tel:"]:active {
     .slide-container h1 {
         font-size: 1.5rem;
     }
-    
+
     .slide-image-wrapper {
         max-width: 250px;
     }
-    
-    .metric-box {
-        width: 100%;
+
+    /* Make sure elements appear in proper order without animations */
+    .slide-container > * {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
     }
-    
-    .card {
-        width: 100%;
-        height: auto;
-        padding: 15px;
+
+    /* Quick links adjustments */
+    .quick-links-list ul {
+        gap: 15px;
     }
-    
-    /* Header adjustments */
-    header {
-        flex-direction: column;
-        padding: 10px;
+
+    .quick-links-list a {
+        font-size: 1rem;
     }
-    
-    .logo {
-        margin-bottom: 10px;
-    }
-    
-    nav {
-        width: 100%;
-    }
-    
-    #menu-toggle {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-    }
-    
-    /* Chatbot */
-    #chatbot-container {
-        width: 100%;
-        right: 0;
-        border-radius: 0;
-    }
-    
-    /* Services */
-    .service-item {
-        padding: 15px;
-    }
-    
-    .service-icon {
-        font-size: 1.5rem;
-    }
-    
-    .service-item h3 {
-        font-size: 1.2rem;
-    }
-    
+
     /* Courses */
     .course, .batch {
         width: 100%;
@@ -1875,34 +1895,23 @@ button[onclick*="tel:"]:active {
     .slide {
         width: 150px;
     }
+    
+    /* Services */
+    .service-item {
+        padding: 15px;
+    }
+    
+    .service-icon {
+        font-size: 1.5rem;
+    }
+    
+    .service-item h3 {
+        font-size: 1.2rem;
+    }
 }
 
-/* Reduced motion preference */
-@media (prefers-reduced-motion: reduce) {
-    .animate-fade-in,
-    .animate-slide-left,
-    .animate-slide-right,
-    .animate-list-item {
-        animation: fadeIn 0.5s ease-out forwards !important;
-        transform: none !important;
-    }
-    
-    .slide-container,
-    .slide-text,
-    .slide-image-container,
-    .btn,
-    .decorative-shape,
-    .icon-checkmark {
-        transition: none !important;
-        animation: none !important;
-    }
-    
-    .bg-circle,
-    .particle {
-        animation: none !important;
-    }
-    
-    .slider-track {
-        animation: none !important;
-    }
+/* Basic fade-in animation for mobile */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
