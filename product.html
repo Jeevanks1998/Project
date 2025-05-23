@@ -23,6 +23,12 @@
         }
         
         /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
@@ -31,6 +37,7 @@
             color: var(--text);
             background: #fff;
             overflow-x: hidden;
+            -webkit-text-size-adjust: 100%;
         }
         
         h1, h2, h3, h4 {
@@ -52,11 +59,17 @@
         a {
             text-decoration: none;
             transition: all 0.3s ease;
+            color: inherit;
         }
         
         img {
             max-width: 100%;
             height: auto;
+            display: block;
+        }
+        
+        ul {
+            list-style: none;
         }
         
         /* Layout Components */
@@ -89,6 +102,7 @@
             z-index: 1000;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
+            width: 100%;
         }
         
         header.scrolled {
@@ -110,6 +124,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            z-index: 1001;
         }
         
         .logo span {
@@ -164,6 +179,7 @@
             font-size: 1.5rem;
             cursor: pointer;
             z-index: 1001;
+            padding: 0.5rem;
         }
         
         /* Buttons */
@@ -176,6 +192,7 @@
             font-weight: 600;
             transition: all 0.3s ease;
             border: 2px solid transparent;
+            white-space: nowrap;
         }
         
         .btn-primary {
@@ -558,6 +575,10 @@
         }
         
         @media (max-width: 576px) {
+            html {
+                font-size: 15px;
+            }
+            
             h1 { font-size: 1.8rem; }
             h2 { font-size: 1.5rem; }
             h3 { font-size: 1.3rem; }
@@ -574,6 +595,7 @@
             .btn {
                 width: 100%;
                 padding: 0.8rem 1rem;
+                white-space: normal;
             }
             
             .hero-buttons {
@@ -616,6 +638,44 @@
                 flex-direction: column;
                 gap: 1rem;
             }
+            
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .product-card, .card {
+                padding: 1.5rem;
+            }
+            
+            nav ul {
+                padding: 5rem 1rem;
+            }
+            
+            .header-container {
+                padding: 0.5rem 1rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            html {
+                font-size: 14px;
+            }
+            
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            
+            .logo {
+                font-size: 1.1rem;
+            }
+            
+            .mobile-menu-btn {
+                font-size: 1.3rem;
+            }
+            
+            .product-card, .card {
+                padding: 1.2rem;
+            }
         }
     </style>
 </head>
@@ -625,12 +685,12 @@
             <a href="#" class="logo">
                 <span>Dhisha</span>AI Complete Analytics
             </a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
             <nav>
                 <ul id="navMenu">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#products">Products</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -964,8 +1024,9 @@
 
     <footer>
         <div class="container">
-            <div class="footer-logo"
-                <span>Dhisa</span>AI Complete Analytics
+            <div class="footer-logo">
+                <i class="fas fa-brain"></i>
+                <span>Dhisa</span>Ai
             </div>
             <div class="footer-links">
                 <a href="#home">Home</a>
@@ -976,10 +1037,10 @@
                 <a href="#">Terms</a>
             </div>
             <div class="social-links">
-                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
             <div class="copyright">
                 © 2025 DhishaAI Complete Analytics. All rights reserved. Designed By Jeevan K S
@@ -997,6 +1058,18 @@
             navMenu.classList.toggle('show');
             mobileMenuBtn.innerHTML = navMenu.classList.contains('show') ? 
                 '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            mobileMenuBtn.setAttribute('aria-expanded', navMenu.classList.contains('show'));
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('show')) {
+                    navMenu.classList.remove('show');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
         });
 
         // Header scroll effect
@@ -1026,6 +1099,7 @@
                     if (navMenu.classList.contains('show')) {
                         navMenu.classList.remove('show');
                         mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
                     }
                 }
             });
