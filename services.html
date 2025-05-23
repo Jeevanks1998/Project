@@ -100,6 +100,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 1.5rem;
+            width: 100%;
         }
         
         .logo {
@@ -109,7 +110,6 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            margin-right: auto; /* Pushes logo to the left */
         }
         
         .logo span {
@@ -118,7 +118,8 @@
         
         /* Navigation */
         nav {
-            margin-left: auto; /* Pushes nav to the right */
+            display: flex;
+            align-items: center;
         }
         
         nav ul {
@@ -162,7 +163,7 @@
             color: var(--light);
             font-size: 1.5rem;
             cursor: pointer;
-            margin-left: auto; /* Ensures it stays on the right */
+            z-index: 1001;
         }
         
         /* Buttons */
@@ -198,6 +199,11 @@
         .btn-outline:hover {
             background: var(--primary);
             color: white;
+        }
+        
+        .btn-sm {
+            padding: 0.5rem 1.2rem;
+            font-size: 0.9rem;
         }
         
         .btn i {
@@ -432,7 +438,7 @@
         
         @media (max-width: 768px) {
             .header-container {
-                padding: 0.75rem 1.5rem;
+                padding: 0.75rem 1rem;
             }
             
             nav ul {
@@ -449,6 +455,7 @@
                 transform: translateX(100%);
                 transition: transform 0.3s ease;
                 z-index: 999;
+                padding: 2rem;
             }
             
             nav ul.show {
@@ -457,11 +464,19 @@
             
             .mobile-menu-btn {
                 display: block;
-                z-index: 1000;
             }
             
             .hero {
-                padding: 5rem 1.5rem;
+                padding: 5rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+            
+            .hero p {
+                font-size: 1rem;
             }
             
             .industry-header {
@@ -473,22 +488,78 @@
             .industry-icon {
                 margin-bottom: 1rem;
             }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-text, .about-image {
+                width: 100%;
+            }
+            
+            .mission-box {
+                padding: 1.5rem;
+            }
+            
+            .card {
+                padding: 1.2rem;
+            }
         }
         
         @media (max-width: 576px) {
-            h1 { font-size: 2rem; }
+            h1 { font-size: 1.8rem; }
             h2 { font-size: 1.5rem; }
+            h3 { font-size: 1.3rem; }
             
             .hero {
-                padding: 4rem 1.5rem;
+                padding: 4rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
             }
             
             .btn {
                 width: 100%;
+                padding: 0.8rem 1rem;
             }
             
             .hero-buttons {
                 flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+            
+            .header-container {
+                padding: 0.75rem 1rem;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            section {
+                padding: 2rem 1rem;
+            }
+            
+            .mission-box {
+                padding: 1.2rem;
+            }
+            
+            .industry-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            .card-icon {
+                font-size: 1.5rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
     </style>
@@ -769,7 +840,7 @@
                 <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
             <div class="copyright">
-                © 2025 DhishaAI Complete Analytics. All rights reserved.Designed By Jeevan K S
+                © 2025 DhishaAI Complete Analytics. All rights reserved. Designed By Jeevan K S
             </div>
         </div>
     </footer>
