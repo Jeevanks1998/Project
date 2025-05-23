@@ -62,33 +62,69 @@ document.addEventListener('DOMContentLoaded', function() {
         startHeroSlider();
     }
 
-    // Initialize the slider
-    initHeroSlider();
-});
-
     // ========== Mobile Menu ==========
-    const menuToggle = document.getElementById('menu-toggle');
-    const menu = document.querySelector('nav ul'); // Changed to target nav ul
-
     function initMobileMenu() {
-        if (!menuToggle || !menu) return;
+        const menuToggle = document.getElementById('menu-toggle');
+        const nav = document.querySelector('nav');
+        const overlay = document.querySelector('.overlay');
+
+        if (!menuToggle || !nav) return;
         
         menuToggle.addEventListener('click', function(e) {
             e.stopPropagation();
-            menu.classList.toggle('active');
+            nav.classList.toggle('active');
+            overlay.classList.toggle('active');
             menuToggle.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+            
+            // Change menu icon to X when active
+            if (nav.classList.contains('active')) {
+                this.innerHTML = '&times;';
+            } else {
+                this.innerHTML = '&#9776;';
+            }
         });
 
-        // Close menu when clicking outside
+        // Close menu when clicking outside or on a link
         document.addEventListener('click', function(e) {
-            if (!menu.contains(e.target) && !menuToggle.contains(e.target)) {
-                menu.classList.remove('active');
+            if (nav.classList.contains('active') && 
+                !nav.contains(e.target) && 
+                !menuToggle.contains(e.target)) {
+                nav.classList.remove('active');
+                overlay.classList.remove('active');
                 menuToggle.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+                menuToggle.innerHTML = '&#9776;'; // Reset icon
             }
+        });
+
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                nav.classList.remove('active');
+                overlay.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+                menuToggle.innerHTML = '&#9776;'; // Reset icon
+            });
+        });
+
+        // Handle dropdowns on mobile
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('a');
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
         });
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
+    // ========== Chatbot ==========
+    function initChatbot() {
         // Chatbot elements
         const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
         const chatbotContainer = document.getElementById('chatbot-container');
@@ -347,7 +383,40 @@ document.addEventListener('DOMContentLoaded', function() {
                     requirements: "Basic programming knowledge",
                     nextBatch: "1st November (Offline)"
                 },
-                // Other courses similarly...
+                'data science': {
+                    title: "Data Science",
+                    duration: "8 months",
+                    price: "₹26,000",
+                    features: "Python, Statistics, Machine Learning, Data Visualization",
+                    description: "Master data analysis and machine learning techniques to extract insights from complex datasets.",
+                    syllabus: [
+                        "Month 1: Python Fundamentals",
+                        "Month 2: Statistics for Data Science",
+                        "Month 3: Data Wrangling",
+                        "Month 4: Data Visualization",
+                        "Month 5: Machine Learning Basics",
+                        "Month 6: Advanced ML Algorithms",
+                        "Month 7: Big Data Technologies",
+                        "Month 8: Capstone Project"
+                    ],
+                    requirements: "Basic math knowledge",
+                    nextBatch: "5th November (Offline)"
+                },
+                'digital marketing': {
+                    title: "Digital Marketing",
+                    duration: "4 months",
+                    price: "₹15,000",
+                    features: "SEO, SEM, Social Media, Content Marketing",
+                    description: "Learn to create and execute effective digital marketing campaigns across multiple platforms.",
+                    syllabus: [
+                        "Month 1: Fundamentals of Digital Marketing",
+                        "Month 2: Search Engine Marketing",
+                        "Month 3: Social Media Marketing",
+                        "Month 4: Analytics & Strategy"
+                    ],
+                    requirements: "No prerequisites",
+                    nextBatch: "10th November (Offline)"
+                }
             };
             
             const course = courses[courseName.toLowerCase()];
@@ -384,7 +453,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     duration: "6 months",
                     seats: "15 seats available"
                 },
-                // Other batches similarly...
+                'data science': {
+                    nextBatch: "5th November (Offline)",
+                    timing: "Weekdays: 7PM-9PM | Weekends: 2PM-5PM",
+                    duration: "8 months",
+                    seats: "12 seats available"
+                },
+                'digital marketing': {
+                    nextBatch: "10th November (Offline)",
+                    timing: "Weekdays: 5PM-7PM | Weekends: 11AM-2PM",
+                    duration: "4 months",
+                    seats: "20 seats available"
+                }
             };
             
             const batch = batches[courseName.toLowerCase()];
@@ -550,20 +630,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Event listeners
-        chatbotToggleBtn.addEventListener('click', toggleChatbot);
-        closeChatbotBtn.addEventListener('click', toggleChatbot);
-        chatbotSendBtn.addEventListener('click', handleUserMessage);
-        chatbotInputField.addEventListener('keypress', function(e) {
+        if (chatbotToggleBtn) chatbotToggleBtn.addEventListener('click', toggleChatbot);
+        if (closeChatbotBtn) closeChatbotBtn.addEventListener('click', toggleChatbot);
+        if (chatbotSendBtn) chatbotSendBtn.addEventListener('click', handleUserMessage);
+        if (chatbotInputField) chatbotInputField.addEventListener('keypress', function(e) {
             if (e.key === 'Enter') handleUserMessage();
         });
-        quickQuestionBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                const question = this.getAttribute('data-question');
-                chatbotInputField.value = question;
-                handleUserMessage();
+        if (quickQuestionBtns.length > 0) {
+            quickQuestionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const question = this.getAttribute('data-question');
+                    chatbotInputField.value = question;
+                    handleUserMessage();
+                });
             });
-        });
-        endChatBtn.addEventListener('click', function() {
+        }
+        if (endChatBtn) endChatBtn.addEventListener('click', function() {
             addMessage("User ended the chat", true);
             showTypingIndicator();
             
@@ -575,20 +657,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Show notification after 10 seconds if inactive
-        setTimeout(() => {
-            if (!chatbotContainer.classList.contains('active')) {
-                notificationBadge.style.display = 'block';
-            }
-        }, 10000);
-    });
-
+        if (notificationBadge) {
+            setTimeout(() => {
+                if (!chatbotContainer.classList.contains('active')) {
+                    notificationBadge.style.display = 'block';
+                }
+            }, 10000);
+        }
+    }
 
     // ========== Testimonial Slider ==========
-    const testimonialSlider = document.querySelector('.testimonial-slider');
-    const testimonialTrack = document.querySelector('.testimonial-slider .slider-track');
-    const testimonials = document.querySelectorAll('.testimonial');
-
     function initTestimonialSlider() {
+        const testimonialSlider = document.querySelector('.testimonial-slider');
+        const testimonialTrack = document.querySelector('.testimonial-slider .slider-track');
+        const testimonials = document.querySelectorAll('.testimonial');
+
         if (!testimonialTrack || testimonials.length === 0) return;
         
         const testimonialWidth = testimonials[0].offsetWidth + 20;
@@ -629,7 +712,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ========== Initialize All Components ==========
+    // Initialize all components
     initHeroSlider();
     initMobileMenu();
     initChatbot();
@@ -637,8 +720,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Window resize handler
     window.addEventListener('resize', function() {
-        // Reinitialize sliders on resize
         initTestimonialSlider();
     });
-
-   
+});
