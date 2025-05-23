@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DhisaAI Complete Analytics - AI/ML Solutions</title>
+    <title>DhisaAi Complete Analytics - AI/ML Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -355,6 +355,10 @@
         }
         
         /* Industry Sections */
+        .industry-section {
+            background: var(--section-bg);
+        }
+        
         .industry-header {
             display: flex;
             align-items: center;
@@ -372,6 +376,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
         
         /* Contact Section */
@@ -542,6 +547,12 @@
                 min-width: 100%;
             }
             
+            /* Industry section adjustments */
+            .industry-section h2 {
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+            
             /* Overlay when menu is open */
             .overlay {
                 position: fixed;
@@ -577,6 +588,7 @@
             
             .hero p {
                 font-size: 0.95rem;
+                margin-bottom: 1.5rem;
             }
             
             .btn {
@@ -607,6 +619,22 @@
             
             .logo {
                 font-size: 1.2rem;
+            }
+            
+            /* Industry section adjustments */
+            .industry-header {
+                margin-bottom: 1.5rem;
+            }
+            
+            .industry-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+            
+            /* Section padding adjustments */
+            section {
+                padding: 2rem 1rem;
             }
         }
     </style>
@@ -652,7 +680,7 @@
         <!-- About Us Section -->
         <section id="about" class="about-section">
             <div class="container">
-                <h2>About DhisaAI Complete Analytics</h2>
+                <h2>About DhisaAi</h2>
                 <div class="about-content">
                     <div class="about-text">
                         <p>DhisaAi is a premier provider of artificial intelligence and machine learning solutions, committed to empowering businesses across industries with transformative AI technologies that drive measurable results.</p>
@@ -693,7 +721,9 @@
                     <div class="industry-icon floating">
                         <i class="fas fa-shopping-cart"></i>
                     </div>
-                    <h2>Retail: Redefining Customer Experiences</h2>
+                    <div>
+                        <h2>Retail: Redefining Customer Experiences</h2>
+                    </div>
                 </div>
                 <p>Today's consumers expect personalized, seamless shopping journeys. Imagine a customer walking into a store — or browsing online — and finding exactly what they need, before they even know they need it.</p>
                 <p>No more endless searching. No more irrelevant promotions. Every interaction feels intuitive, seamless, and personal. We make that vision a reality.</p>
@@ -735,7 +765,9 @@
                     <div class="industry-icon floating">
                         <i class="fas fa-boxes"></i>
                     </div>
-                    <h2>Consumer Packaged Goods (CPG): Sensing Demand in Real Time</h2>
+                    <div>
+                        <h2>Consumer Packaged Goods (CPG): Sensing Demand in Real Time</h2>
+                    </div>
                 </div>
                 <p>Markets shift rapidly — and so should your supply chain. In the world of CPG, timing is everything. A trending product can go from must-have to forgotten in days. A sudden spike in demand can empty shelves before suppliers even notice.</p>
                 
@@ -776,7 +808,9 @@
                     <div class="industry-icon floating">
                         <i class="fas fa-industry"></i>
                     </div>
-                    <h2>Manufacturing: Intelligent Quality at Scale</h2>
+                    <div>
+                        <h2>Manufacturing: Intelligent Quality at Scale</h2>
+                    </div>
                 </div>
                 <p>Consistent product quality is a non-negotiable. In manufacturing, one small defect can ripple into massive costs — rework, recalls, damaged reputation. Traditional quality control struggles to keep pace with today's fast, complex production lines. we bring intelligence to every inspection point.</p>
                 
@@ -817,7 +851,9 @@
                     <div class="industry-icon floating">
                         <i class="fas fa-heartbeat"></i>
                     </div>
-                    <h2>Healthcare: Personalizing Patient Care</h2>
+                    <div>
+                        <h2>Healthcare: Personalizing Patient Care</h2>
+                    </div>
                 </div>
                 <p>Every patient deserves care that's tailored to their unique needs. Every patient is unique. We believe healthcare should be as individual as the people it serves. That's why we build AI-powered solutions that turn data into truly personalized care journeys.</p>
                 
