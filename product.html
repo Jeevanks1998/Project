@@ -1,678 +1,853 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complete Analytics | Product Development</title>
-  <!-- Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    /* Global Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Arial', sans-serif;
-      line-height: 1.6;
-      background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
-      color: #333;
-      overflow-x: hidden;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    /* Header */
-    header {
-      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: #fff;
-      padding: 120px 20px;
-      text-align: center;
-      position: relative;
-    }
-
-    header h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 700;
-      margin-bottom: 20px;
-      animation: fadeInDown 1.5s ease-in-out;
-    }
-
-    header p {
-      font-size: clamp(1.2rem, 3vw, 1.5rem);
-      margin: 0 auto;
-      max-width: 800px;
-      animation: fadeInUp 1.5s ease-in-out;
-    }
-
-    .cta-buttons {
-      margin-top: 30px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .cta-buttons a {
-      display: inline-block;
-      padding: 12px 30px;
-      background: #ff6347;
-      color: #fff;
-      border-radius: 30px;
-      font-size: clamp(1rem, 2vw, 1.1rem);
-      font-weight: 500;
-      transition: background 0.3s ease, transform 0.3s ease;
-      min-width: 180px;
-    }
-
-    .cta-buttons a:hover {
-      background: #ff4500;
-      transform: translateY(-5px);
-    }
-
-    /* Navigation */
-    nav {
-      display: flex;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.9);
-      padding: 15px 10px;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      backdrop-filter: blur(10px);
-      overflow-x: auto;
-      white-space: nowrap;
-    }
-
-    nav::-webkit-scrollbar {
-      display: none;
-    }
-
-    nav a {
-      color: #fff;
-      margin: 0 15px;
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      font-weight: 500;
-      transition: color 0.3s ease;
-      display: inline-block;
-    }
-
-    nav a:hover {
-      color: #ff6347;
-    }
-
-    /* Main Content */
-    .container {
-      max-width: 1200px;
-      margin: 60px auto;
-      padding: 0 20px;
-    }
-
-    .section {
-      margin-bottom: 60px;
-      padding: 40px;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-      animation: slideUp 1s ease-in-out;
-    }
-
-    .section h2 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      margin-bottom: 30px;
-      color: #333;
-      text-align: center;
-    }
-
-    .section p {
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      line-height: 1.8;
-      color: #555;
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 20px;
-    }
-
-    .section ul {
-      text-align: left;
-      max-width: 800px;
-      margin: 0 auto;
-      list-style-type: disc;
-      padding-left: 20px;
-    }
-
-    .section ul li {
-      font-size: clamp(1rem, 2.5vw, 1.1rem);
-      color: #555;
-      margin-bottom: 10px;
-      line-height: 1.6;
-    }
-
-    /* Product Grid */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .product-card {
-      background: #fff;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      padding: 30px;
-      text-align: center;
-    }
-
-    .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
-    }
-
-    .product-icon {
-      background: linear-gradient(135deg, #ff6347, #ff4500);
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 2rem;
-      margin: 0 auto 20px;
-      box-shadow: 0 8px 16px rgba(255, 99, 71, 0.3);
-      transition: transform 0.5s ease;
-    }
-
-    .product-card:hover .product-icon {
-      transform: rotate(360deg);
-    }
-
-    .product-card h3 {
-      font-size: clamp(1.3rem, 3vw, 1.8rem);
-      margin-bottom: 15px;
-      color: #333;
-    }
-
-    .product-card p {
-      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-      color: #666;
-      margin-bottom: 15px;
-    }
-
-    .product-card ul {
-      text-align: left;
-      list-style-type: disc;
-      padding-left: 20px;
-    }
-
-    .product-card ul li {
-      font-size: clamp(0.8rem, 2vw, 0.9rem);
-      color: #555;
-      margin-bottom: 8px;
-    }
-
-    /* Testimonials */
-    .testimonial-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .testimonial-card {
-      background: #fff;
-      border-radius: 20px;
-      padding: 30px;
-      text-align: center;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    }
-
-    .testimonial-icon {
-      font-size: 2.5rem;
-      color: #ff6347;
-      margin-bottom: 20px;
-    }
-
-    .testimonial-card h3 {
-      font-size: clamp(1.2rem, 3vw, 1.5rem);
-      margin-bottom: 10px;
-      color: #333;
-    }
-
-    .testimonial-card p {
-      font-size: clamp(0.9rem, 2.5vw, 1rem);
-      color: #666;
-      font-style: italic;
-    }
-
-    /* Client Icons */
-    .client-icons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
-      margin-top: 40px;
-    }
-
-    .client-icon {
-      font-size: 2.5rem;
-      color: #333;
-      transition: transform 0.3s ease, color 0.3s ease;
-    }
-
-    .client-icon:hover {
-      transform: scale(1.2);
-      color: #ff6347;
-    }
-
-    /* Pop-up Message */
-    .popup {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #fff;
-      padding: 15px;
-      border-radius: 15px;
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-      animation: slideIn 0.5s ease-in-out;
-      z-index: 1000;
-      max-width: 300px;
-    }
-
-    .popup p {
-      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
-      color: #333;
-      margin-bottom: 15px;
-    }
-
-    .popup-buttons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .popup-buttons a {
-      padding: 10px 20px;
-      border-radius: 30px;
-      font-size: clamp(0.8rem, 2vw, 1rem);
-      font-weight: 500;
-      transition: background 0.3s ease;
-    }
-
-    .popup-buttons a:first-child {
-      background: #ff6347;
-      color: #fff;
-    }
-
-    /* Footer Styling */
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-    font-size: 0.9rem;
-}
-
-.social-links {
-    margin-top: 10px;
-}
-
-.social-links a {
-    color: #fff;
-    margin: 0 10px;
-    font-size: 1.2rem;
-    transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-    color: #0073b1; /* LinkedIn Blue */
-}
-
-.social-links a:hover .fa-instagram {
-    color: #e4405f; /* Instagram Pink */
-}
-
-.social-links a:hover .fa-whatsapp {
-    color: #25d366; /* WhatsApp Green */
-}
-
-.social-links a:hover .fa-twitter {
-    color: #1da1f2; /* Twitter Blue */
-}
-
-.social-links a:hover .fa-facebook {
-    color: #1877f2; /* Facebook Blue */
-}
-
-    /* Animations */
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes slideIn {
-      from {
-        transform: translateX(100%);
-      }
-      to {
-        transform: translateX(0);
-      }
-    }
-
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      header {
-        padding: 100px 20px;
-      }
-
-      .section {
-        padding: 30px;
-      }
-
-      .product-grid, .testimonial-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        padding: 80px 15px;
-      }
-
-      .section {
-        padding: 25px;
-      }
-
-      .cta-buttons a {
-        width: 100%;
-      }
-
-      .popup {
-        max-width: calc(100% - 40px);
-        right: 20px;
-        left: 20px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DhishaAI Complete Analytics - AI/ML Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Simplified Color Scheme */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --text: #333;
+            --text-light: #6c757d;
+            --section-bg: #fff;
+            --section-padding: 3rem 1.5rem;
+            --border-radius: 12px;
+            --box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        /* Base Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--text);
+            background: #fff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            margin-top: 0;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; color: var(--primary); }
+        h3 { font-size: 1.5rem; color: var(--secondary); }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+        
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Layout Components */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        section {
+            padding: var(--section-padding);
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Header */
+        header {
+            background: rgba(26, 26, 46, 0.95);
+            color: var(--light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        /* Navigation */
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--light);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-sm {
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .btn i {
+            margin-right: 0.5rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(63, 55, 201, 0.8)), 
+                        url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero h1 {
+            color: white;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .hero p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+        
+        /* About Section */
+        .about-section {
+            background: var(--section-bg);
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-text, .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .mission-box {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-top: 2rem;
+        }
+        
+        .mission-box h3, .mission-box p {
+            color: white;
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--section-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .card-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            background: rgba(67, 97, 238, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-content {
+            flex-grow: 1;
+        }
+        
+        .card-footer {
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+        
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        /* Industry Sections */
+        .industry-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .industry-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            background: rgba(67, 97, 238, 0.1);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Products Section */
+        .products-section {
+            background: var(--section-bg);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            border-radius: var(--border-radius);
+        }
+        
+        .contact-section h2 {
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 0 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.25rem;
+            margin: 0 0.75rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.25rem; }
+            h2 { font-size: 1.75rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0.75rem 1.5rem;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--dark);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+            
+            nav ul.show {
+                transform: translateX(0);
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                z-index: 1000;
+            }
+            
+            .hero {
+                padding: 5rem 1.5rem;
+            }
+            
+            .industry-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .industry-icon {
+                margin-bottom: 1rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            
+            .hero {
+                padding: 4rem 1.5rem;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <h1>Complete Analytics</h1>
-    <p>Transforming Ideas into Reality with Innovative Product Development Solutions</p>
-    <div class="cta-buttons">
-      <a href="#products">Explore Our Products</a>
-      <a href="#contact">Contact Us</a>
-    </div>
-  </header>
-
-  <!-- Navigation -->
-  <nav>
-    <a href="#about">About Us</a>
-    <a href="#services">Services</a>
-    <a href="#products">Products</a>
-    <a href="#industries">Industries</a>
-    <a href="#testimonials">Testimonials</a>
-    <a href="#contact">Contact</a>
-  </nav>
-
-  <!-- Main Content -->
-  <div class="container">
-    <!-- About Us Section -->
-    <section id="about" class="section">
-      <h2>About Us</h2>
-      <p>
-        Complete Analytics is a leading product development company dedicated to creating innovative solutions that solve real-world problems. With a team of skilled engineers, designers, and developers, we bring ideas to life.
-      </p>
-      <ul>
-        <li><strong>Mission:</strong> To revolutionize industries through cutting-edge technology.</li>
-        <li><strong>Vision:</strong> Empower businesses with tools that drive growth and sustainability.</li>
-        <li><strong>Core Values:</strong> Innovation, Quality, Customer-Centricity.</li>
-      </ul>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="section">
-      <h2>Our Services</h2>
-      <p>
-        We offer end-to-end product development services, from ideation to launch. Our process ensures seamless execution and delivery.
-      </p>
-      <ul>
-        <li><strong>Product Design:</strong> User-centric design for intuitive products.</li>
-        <li><strong>Prototyping:</strong> Rapid prototyping to validate concepts.</li>
-        <li><strong>Development:</strong> Scalable and robust development solutions.</li>
-        <li><strong>Testing:</strong> Rigorous testing for quality assurance.</li>
-        <li><strong>Launch:</strong> Effective go-to-market strategies.</li>
-      </ul>
-    </section>
-
-    <!-- Products Section -->
-<section id="products" class="section">
-  <h2>Our Industry Solutions</h2>
-  <div class="product-grid">
-    <!-- Retail Solution -->
-    <div class="product-card">
-      <div class="product-icon">
-        <i class="fas fa-shopping-bag"></i>
-      </div>
-      <h3>Retail Intelligence</h3>
-      <p>AI-powered solutions to redefine customer experiences and optimize retail operations.</p>
-      <ul>
-        <li>Personalized shopping journeys</li>
-        <li>Smart product recommendations</li>
-        <li>Demand forecasting</li>
-        <li>Inventory optimization</li>
-      </ul>
-    </div>
-
-    <!-- CPG Solution -->
-    <div class="product-card">
-      <div class="product-icon">
-        <i class="fas fa-box-open"></i>
-      </div>
-      <h3>CPG Demand Sensing</h3>
-      <p>Real-time demand sensing and inventory optimization for consumer packaged goods.</p>
-      <ul>
-        <li>Accurate demand forecasting</li>
-        <li>Supply chain optimization</li>
-        <li>Market trend analysis</li>
-        <li>Promotion effectiveness</li>
-      </ul>
-    </div>
-
-    <!-- Manufacturing Solution -->
-    <div class="product-card">
-      <div class="product-icon">
-        <i class="fas fa-industry"></i>
-      </div>
-      <h3>Smart Manufacturing</h3>
-      <p>AI-driven quality control and predictive maintenance for manufacturing excellence.</p>
-      <ul>
-        <li>Defect detection with computer vision</li>
-        <li>Predictive maintenance</li>
-        <li>Process optimization</li>
-        <li>Quality assurance</li>
-      </ul>
-    </div>
-
-    <!-- Healthcare Solution -->
-    <div class="product-card">
-      <div class="product-icon">
-        <i class="fas fa-heartbeat"></i>
-      </div>
-      <h3>Healthcare Analytics</h3>
-      <p>Personalized patient care through AI-powered diagnostics and treatment planning.</p>
-      <ul>
-        <li>Personalized treatment paths</li>
-        <li>Early disease detection</li>
-        <li>Patient outcome prediction</li>
-        <li>Resource optimization</li>
-      </ul>
-    </div>
-
-    <!-- Education Solution -->
-    <div class="product-card">
-      <div class="product-icon">
-        <i class="fas fa-graduation-cap"></i>
-      </div>
-      <h3>EdTech Solutions</h3>
-      <p>AI-driven personalized learning platforms for educational institutions.</p>
-      <ul>
-        <li>Adaptive learning paths</li>
-        <li>Student performance analytics</li>
-        <li>Early intervention systems</li>
-        <li>Curriculum optimization</li>
-      </ul>
-    </div>
-
-    <!-- Government Solution -->
-    <div class="product-card">
-      <div class="product-icon">
-        <i class="fas fa-landmark"></i>
-      </div>
-      <h3>GovTech Solutions</h3>
-      <p>Transforming public services through AI-powered citizen engagement platforms.</p>
-      <ul>
-        <li>Automated citizen services</li>
-        <li>Predictive resource allocation</li>
-        <li>Fraud detection</li>
-        <li>Service optimization</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-    <!-- Industries Served Section -->
-    <section id="industries" class="section">
-      <h2>Industries We Serve</h2>
-      <p>
-        We cater to a wide range of industries, providing tailored solutions to meet their unique challenges.
-      </p>
-      <ul>
-        <li><strong>Healthcare:</strong> Innovative medical devices and software.</li>
-        <li><strong>Education:</strong> E-learning platforms and tools.</li>
-        <li><strong>Retail:</strong> Smart retail solutions.</li>
-        <li><strong>Automotive:</strong> IoT-enabled automotive systems.</li>
-        <li><strong>Finance:</strong> Secure banking and payment solutions.</li>
-        <li><strong>Entertainment:</strong> Media streaming and content platforms.</li>
-      </ul>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="section">
-      <h2>What Our Clients Say</h2>
-      <div class="testimonial-grid">
-        <!-- Testimonial 1 -->
-        <div class="testimonial-card">
-          <div class="testimonial-icon">
-            <i class="fas fa-comment-dots"></i>
-          </div>
-          <h3>John Doe</h3>
-          <p>"Complete Analytics transformed our business with their cutting-edge solutions. Highly recommended!"</p>
+    <header id="mainHeader">
+        <div class="header-container container">
+            <a href="#" class="logo">
+                <span>Dhisha</span>AI Complete Analytics
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <!-- Testimonial 2 -->
-        <div class="testimonial-card">
-          <div class="testimonial-icon">
-            <i class="fas fa-comment-dots"></i>
-          </div>
-          <h3>Jane Smith</h3>
-          <p>"The SmartHome Pro system has made our lives so much easier. Thank you!"</p>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+              <h1>DhishaAI Complete Analytics</h1>
+                <h1>Transform Your Business with AI/ML Solutions</h1>
+                <p class="delay-1">Harness the power of artificial intelligence and machine learning to drive innovation, efficiency, and growth across your organization.</p>
+                <div class="hero-buttons delay-2">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Get Started
+                    </a>
+                    <a href="#products" class="btn btn-outline">
+                        <i class="fas fa-cube"></i> Our Products
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>About DhisaAi</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>DhisaAi is a premier provider of artificial intelligence and machine learning solutions, committed to empowering businesses across industries with transformative AI technologies that drive measurable results.</p>
+                        <p>Since our founding in 2020, our multidisciplinary team of data scientists, engineers, and domain experts has been delivering cutting-edge solutions that combine technical excellence with deep business understanding.</p>
+                        
+                        <div class="mission-box">
+                            <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                            <p>To make enterprise-grade AI accessible and actionable for organizations of all sizes. We're dedicated to demystifying artificial intelligence and delivering solutions that create immediate business value while building long-term competitive advantage.</p>
+                        </div>
+                    </div>
+                    <div class="about-image floating">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="AI Technology">
+                    </div>
+                </div>
+
+                <h3>Our Core Values</h3>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h4><i class="fas fa-lightbulb"></i> Innovation</h4>
+                        <p>We pioneer novel AI applications that solve real business problems in ways that were previously unimaginable.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-shield-alt"></i> Integrity</h4>
+                        <p>We develop ethical AI systems with built-in fairness, transparency, and accountability measures.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-hands-helping"></i> Client Focus</h4>
+                        <p>Your challenges become our challenges. We measure our success by your business outcomes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="products-section">
+            <div class="container">
+                <h2>Our AI/ML Products</h2>
+                <p>Discover our powerful AI/ML products designed to solve complex business challenges across industries.</p>
+                
+                <div class="grid grid-3">
+                    <!-- Classification and Regression as a Service -->
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h3>Classification & Regression as a Service</h3>
+                            <p>Our cloud-based service provides powerful classification and regression models that can be easily integrated into your applications with just a few API calls.</p>
+                            <ul>
+                                <li>Pre-trained models for common use cases</li>
+                                <li>Custom model training with your data</li>
+                                <li>Real-time prediction API</li>
+                                <li>Automated model retraining</li>
+                                <li>Performance monitoring dashboard</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#contact" class="btn btn-outline btn-sm">Request Demo</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Forecasting as a Service -->
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h3>Forecasting as a Service</h3>
+                            <p>Accurate time-series forecasting solution that helps businesses predict future trends, demand, and resource requirements with high precision.</p>
+                            <ul>
+                                <li>Multiple forecasting algorithms</li>
+                                <li>Automated seasonality detection</li>
+                                <li>Anomaly detection and alerting</li>
+                                <li>Custom confidence intervals</li>
+                                <li>Integration with business systems</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#contact" class="btn btn-outline btn-sm">Request Demo</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Price Optimizer -->
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <h3>Price Optimizer</h3>
+                            <p>Dynamic pricing solution that uses machine learning to optimize prices in real-time based on market conditions, demand, and competitor pricing.</p>
+                            <ul>
+                                <li>Real-time market analysis</li>
+                                <li>Demand elasticity modeling</li>
+                                <li>Competitor price tracking</li>
+                                <li>Personalized pricing strategies</li>
+                                <li>ROI impact analysis</li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#contact" class="btn btn-outline btn-sm">Request Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Retail Section -->
+        <section id="retail" class="industry-section">
+            <div class="container">
+                <div class="industry-header">
+                    <div class="industry-icon floating">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h2>Retail: Redefining Customer Experiences</h2>
+                </div>
+                <p>Today's consumers expect personalized, seamless shopping journeys. Imagine a customer walking into a store — or browsing online — and finding exactly what they need, before they even know they need it.</p>
+                <p>No more endless searching. No more irrelevant promotions. Every interaction feels intuitive, seamless, and personal. We make that vision a reality.</p>
+                
+                <h3>Our Retail Solutions</h3>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-user-tag"></i>
+                            </div>
+                            <h4>Personalized Recommendations</h4>
+                            <p>AI-driven product suggestions that increase conversion and customer satisfaction.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Demand Forecasting</h4>
+                            <p>Predict inventory needs with unprecedented accuracy to optimize stock levels.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="card-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h4>Omnichannel Experience</h4>
+                            <p>Seamless integration across all customer touchpoints for unified experiences.</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2>Ready to Transform Your Business with AI?</h2>
+                <p>Contact us today to discuss how our AI/ML solutions can drive innovation, efficiency, and growth for your organization.</p>
+                <div class="hero-buttons">
+                    <a href="mailto:info@dhisaai.com" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Email Us
+                    </a>
+                    <a href="tel:+919886096090" class="btn btn-outline">
+                        <i class="fas fa-phone"></i> Call Us
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-logo">
+                <i class="fas fa-brain"></i>
+                <span>Dhisa</span>Ai
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#products">Products</a>
+                <a href="#contact">Contact</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="copyright">
+                © 2025 DhishaAI Complete Analytics. All rights reserved.Designed By Jeevan K S
+            </div>
         </div>
+    </footer>
 
-        <!-- Testimonial 3 -->
-        <div class="testimonial-card">
-          <div class="testimonial-icon">
-            <i class="fas fa-comment-dots"></i>
-          </div>
-          <h3>Michael Brown</h3>
-          <p>"HealthTrack has been a game-changer for our fitness routines. Great product!"</p>
-        </div>
-      </div>
-    </section>
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        const mainHeader = document.getElementById('mainHeader');
 
-    <!-- Client Icons Section -->
-    <section class="section">
-      <h2>Our Clients</h2>
-      <div class="client-icons">
-        <i class="fab fa-apple client-icon"></i>
-        <i class="fab fa-google client-icon"></i>
-        <i class="fab fa-microsoft client-icon"></i>
-        <i class="fab fa-amazon client-icon"></i>
-        <i class="fab fa-facebook client-icon"></i>
-        <i class="fab fa-twitter client-icon"></i>
-      </div>
-    </section>
-  </div>
-
-  <!-- Pop-up Message -->
-  <div class="popup">
-    <p>Have a project in mind? Let's make it happen!</p>
-    <div class="popup-buttons">
-      <a href="tel:+1234567890">Call Us</a>
-    </div>
-  </div>
-
- <!-- Footer -->
- <footer>
-  <p>© 2025 Complete Analytics. All rights reserved. Designed By Jeevan K S</p>
-  <div class="social-links">
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-linkedin"></i></a>
-      <a href="#"><i class="fab fa-whatsapp"></i></a>
-      <a href="#"><i class="fab fa-twitter"></i></a>
-      <a href="#"><i class="fab fa-facebook"></i></a>
-  </div>
-</footer>
-
-  <script>
-    // Simple script to handle smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('show') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         });
-      });
-    });
-  </script>
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                mainHeader.classList.add('scrolled');
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('show')) {
+                        navMenu.classList.remove('show');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const animateSections = () => {
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        };
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.scrollY > 50) {
+                mainHeader.classList.add('scrolled');
+            }
+            
+            animateSections();
+            
+            // Hero animations
+            const heroTitle = document.querySelector('.hero h1');
+            const heroText = document.querySelector('.hero p');
+            const heroButtons = document.querySelector('.hero-buttons');
+            
+            heroTitle.style.animation = 'fadeInUp 0.8s ease forwards';
+            heroText.style.animation = 'fadeInUp 0.8s ease 0.3s forwards';
+            heroButtons.style.animation = 'fadeInUp 0.8s ease 0.6s forwards';
+        });
+
+        // Floating elements animation
+        const floatingElements = document.querySelectorAll('.floating');
+        floatingElements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.2}s`;
+        });
+    </script>
 </body>
 </html>
