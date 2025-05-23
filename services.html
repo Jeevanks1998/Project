@@ -3,203 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Management Services</title>
+    <title>DhisaAi Complete Analytics - AI/ML Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* General Styles */
+        /* Simplified Color Scheme */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --text: #333;
+            --text-light: #6c757d;
+            --section-bg: #fff;
+            --section-padding: 3rem 1.5rem;
+            --border-radius: 12px;
+            --box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        /* Base Styles */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            background: #f9f9f9;
-            color: #333;
+            color: var(--text);
+            background: #fff;
+            overflow-x: hidden;
         }
-
+        
+        h1, h2, h3, h4 {
+            margin-top: 0;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; color: var(--primary); }
+        h3 { font-size: 1.5rem; color: var(--secondary); }
+        h4 { font-size: 1.25rem; }
+        
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+        
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        /* Layout Components */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        section {
+            padding: var(--section-padding);
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Header */
         header {
-            background: #333;
-            color: #fff;
-            padding: 1rem 0;
-            text-align: center;
+            background: rgba(26, 26, 46, 0.95);
+            color: var(--light);
             position: sticky;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
-
-        header nav ul {
+        
+        header.scrolled {
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-right: auto; /* Pushes logo to the left */
+        }
+        
+        .logo span {
+            color: var(--accent);
+        }
+        
+        /* Navigation */
+        nav {
+            margin-left: auto; /* Pushes nav to the right */
+        }
+        
+        nav ul {
             list-style: none;
             padding: 0;
             margin: 0;
             display: flex;
-            justify-content: center;
             gap: 1.5rem;
         }
-
-        header nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
+        
+        nav ul li a {
+            color: var(--light);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
         }
-
-        header nav ul li a:hover {
-            color: #007BFF;
-        }
-
-        main {
-            padding: 2rem;
-        }
-
-        h1, h2 {
-            color: #333;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            animation: slideInLeft 1s ease-in-out;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: #007BFF;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 1rem;
-            transition: background 0.3s ease, transform 0.3s ease;
-            animation: fadeInUp 1s ease-in-out;
-        }
-
-        .cta-button:hover {
-            background: #0056b3;
-            transform: translateY(-5px);
-        }
-
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem 0;
-            margin-top: 2rem;
-        }
-
-        /* Responsive Grid for Services and Projects */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .service-item, .project-item {
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            animation: fadeInUp 1s ease-in-out;
-        }
-
-        .service-item:hover, .project-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        .service-item h3, .project-item h3 {
-            color: #007BFF;
-            margin-bottom: 0.5rem;
-        }
-
-        .service-item p, .project-item p {
-            color: #666;
-        }
-
-        /* Pop-Up Welcome Message */
-        .welcome-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #fff;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            z-index: 1001;
-            animation: fadeIn 0.5s ease-in-out, scaleUp 0.5s ease-in-out;
-            max-width: 400px;
-            width: 90%;
-        }
-
-        .welcome-popup h2 {
-            margin-top: 0;
-            color: #007BFF;
-        }
-
-        .welcome-popup p {
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-
-        .welcome-popup .close-btn {
+        
+        nav ul li a:after {
+            content: '';
             position: absolute;
-            top: 10px;
-            right: 10px;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
             background: none;
             border: none;
+            color: var(--light);
             font-size: 1.5rem;
             cursor: pointer;
-            color: #333;
+            margin-left: auto; /* Ensures it stays on the right */
         }
-
-        .welcome-popup .close-btn:hover {
-            color: #007BFF;
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
-
-        .welcome-popup .logo {
-            width: 80px;
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn i {
+            margin-right: 0.5rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(63, 55, 201, 0.8)), 
+                        url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero h1 {
+            color: white;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .hero p {
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
+        }
+        
+        /* About Section */
+        .about-section {
+            background: var(--section-bg);
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .about-text, .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .mission-box {
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            margin-top: 2rem;
+        }
+        
+        .mission-box h3, .mission-box p {
+            color: white;
+        }
+        
+        /* Cards */
+        .card {
+            background: var(--section-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .card-icon {
+            font-size: 2rem;
+            color: var(--primary);
             margin-bottom: 1rem;
         }
-
-        .welcome-popup .call-button {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: #28a745;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-top: 1rem;
-            transition: background 0.3s ease, transform 0.3s ease;
+        
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 1.5rem;
         }
-
-        .welcome-popup .call-button:hover {
-            background: #218838;
+        
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        /* Industry Sections */
+        .industry-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .industry-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            background: rgba(67, 97, 238, 0.1);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-align: center;
+            border-radius: var(--border-radius);
+        }
+        
+        .contact-section h2 {
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 0 2rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.25rem;
+            margin: 0 0.75rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
             transform: translateY(-3px);
         }
-
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            animation: fadeIn 0.5s ease-in-out;
+        
+        .copyright {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
         }
-
-        /* Advanced Animations */
+        
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
+        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -210,193 +410,456 @@
                 transform: translateY(0);
             }
         }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-20px);
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            h1 { font-size: 2.25rem; }
+            h2 { font-size: 1.75rem; }
+        }
+        
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0.75rem 1.5rem;
             }
-            to {
-                opacity: 1;
+            
+            nav ul {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: var(--dark);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 999;
+            }
+            
+            nav ul.show {
                 transform: translateX(0);
             }
-        }
-
-        @keyframes scaleUp {
-            from {
-                transform: translate(-50%, -50%) scale(0.9);
+            
+            .mobile-menu-btn {
+                display: block;
+                z-index: 1000;
             }
-            to {
-                transform: translate(-50%, -50%) scale(1);
+            
+            .hero {
+                padding: 5rem 1.5rem;
             }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header nav ul {
+            
+            .industry-header {
                 flex-direction: column;
-                gap: 0.5rem;
+                align-items: flex-start;
+                gap: 1rem;
             }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            h2 {
-                font-size: 1.75rem;
-            }
-
-            .grid-container {
-                grid-template-columns: 1fr;
+            
+            .industry-icon {
+                margin-bottom: 1rem;
             }
         }
-
-        /* Icons */
-        .service-item i, .project-item i {
-            font-size: 2rem;
-            color: #007BFF;
-            margin-bottom: 1rem;
-        }
-
-        /* Social Media Icons in Footer */
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .social-icons a {
-            color: #fff;
-            font-size: 1.5rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            color: #007BFF;
-            transform: translateY(-5px);
+        
+        @media (max-width: 576px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+            
+            .hero {
+                padding: 4rem 1.5rem;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Welcome Pop-Up -->
-    <div class="overlay" id="overlay"></div>
-    <div class="welcome-popup" id="welcomePopup">
-        <button class="close-btn" id="closeBtn">&times;</button>
-        <img src="" alt="" class="logo">
-        <h2>Welcome to CompleteAnalytics Project Services!</h2>
-        <p>We're excited to have you here! Manage your projects, track progress, and collaborate with your team seamlessly. Need help? Click 'Get Started' or contact us anytime!</p>
-        <a href="#services" class="cta-button" id="getStartedBtn">Get Started</a>
-        <a href="tel:+919886096090" class="call-button">Call Us Now</a>
-    </div>
-
-    <header>
-        <div class="logo">Complete Analytics Project Services</div>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Projects</a></li>
-            </ul>
-        </nav>
+    <header id="mainHeader">
+        <div class="header-container container">
+            <a href="#" class="logo">
+                <span>Dhisha</span>AI Complete Analytics
+            </a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <!-- Home Section -->
-        <section id="home">
-            <h1>Welcome to Our Project Management Services</h1>
-            <p>We help you manage your projects efficiently and effectively.</p>
-            <a href="#services" class="cta-button">Explore Our Services</a>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services">
-            <h2>Our Services</h2>
-            <div class="grid-container">
-                <div class="service-item">
-                    <i class="fas fa-project-diagram"></i>
-                    <h3>Project Planning</h3>
-                    <p>We help you create detailed project plans to ensure smooth execution.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-tasks"></i>
-                    <h3>Task Management</h3>
-                    <p>Efficiently manage tasks and deadlines with our tools and expertise.</p>
-                </div>
-                <div class="service-item">
-                    <i class="fas fa-users"></i>
-                    <h3>Team Collaboration</h3>
-                    <p>Enhance team communication and collaboration for better results.</p>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>DhishaAI Complete Analytics</h1>
+                <h1>Transform Your Business with AI/ML Solutions</h1>
+                <p class="delay-1">Harness the power of artificial intelligence and machine learning to drive innovation, efficiency, and growth across your organization.</p>
+                <div class="hero-buttons delay-2">
+                    <a href="#contact" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i> Get Started
+                    </a>
+                    <a href="#about" class="btn btn-outline">
+                        <i class="fas fa-book-open"></i> Learn More
+                    </a>
                 </div>
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section id="projects">
-            <h2>Our Projects</h2>
-            <div class="grid-container">
-                <div class="project-item">
-                    <i class="fas fa-laptop-code"></i>
-                    <h3>Project 1: Website Redesign</h3>
-                    <p>Redesigned a client's website for better user experience.</p>
-                    <p><strong>Status:</strong> Completed</p>
+        <!-- About Us Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>About DhisaAi</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>DhisaAi is a premier provider of artificial intelligence and machine learning solutions, committed to empowering businesses across industries with transformative AI technologies that drive measurable results.</p>
+                        <p>Since our founding in 2020, our multidisciplinary team of data scientists, engineers, and domain experts has been delivering cutting-edge solutions that combine technical excellence with deep business understanding.</p>
+                        
+                        <div class="mission-box">
+                            <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                            <p>To make enterprise-grade AI accessible and actionable for organizations of all sizes. We're dedicated to demystifying artificial intelligence and delivering solutions that create immediate business value while building long-term competitive advantage.</p>
+                        </div>
+                    </div>
+                    <div class="about-image floating">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="AI Technology">
+                    </div>
                 </div>
-                <div class="project-item">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Project 2: Mobile App Development</h3>
-                    <p>Developed a mobile app for a startup.</p>
-                    <p><strong>Status:</strong> In Progress</p>
+
+                <h3>Our Core Values</h3>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h4><i class="fas fa-lightbulb"></i> Innovation</h4>
+                        <p>We pioneer novel AI applications that solve real business problems in ways that were previously unimaginable.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-shield-alt"></i> Integrity</h4>
+                        <p>We develop ethical AI systems with built-in fairness, transparency, and accountability measures.</p>
+                    </div>
+                    <div class="card">
+                        <h4><i class="fas fa-hands-helping"></i> Client Focus</h4>
+                        <p>Your challenges become our challenges. We measure our success by your business outcomes.</p>
+                    </div>
                 </div>
-                <div class="project-item">
-                    <i class="fas fa-bullhorn"></i>
-                    <h3>Project 3: Marketing Campaign</h3>
-                    <p>Created and executed a digital marketing campaign.</p>
-                    <p><strong>Status:</strong> Completed</p>
+            </div>
+        </section>
+
+        <!-- Retail Section -->
+        <section id="retail" class="industry-section">
+            <div class="container">
+                <div class="industry-header">
+                    <div class="industry-icon floating">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h2>Retail: Redefining Customer Experiences</h2>
                 </div>
-                <!-- Add up to 10 projects here -->
+                <p>Today's consumers expect personalized, seamless shopping journeys. Imagine a customer walking into a store — or browsing online — and finding exactly what they need, before they even know they need it.</p>
+                <p>No more endless searching. No more irrelevant promotions. Every interaction feels intuitive, seamless, and personal. We make that vision a reality.</p>
+                
+                <h3>Our Retail Solutions</h3>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-user-tag"></i>
+                        </div>
+                        <h4>Personalized Recommendations</h4>
+                        <p>AI-driven product suggestions that increase conversion and customer satisfaction.</p>
+                        <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Demand Forecasting</h4>
+                        <p>Predict inventory needs with unprecedented accuracy to optimize stock levels.</p>
+                        <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-store"></i>
+                        </div>
+                        <h4>Omnichannel Experience</h4>
+                        <p>Seamless integration across all customer touchpoints for unified experiences.</p>
+                        <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CPG Section -->
+        <section id="cpg" class="industry-section">
+            <div class="container">
+                <div class="industry-header">
+                    <div class="industry-icon floating">
+                        <i class="fas fa-boxes"></i>
+                    </div>
+                    <h2>Consumer Packaged Goods (CPG): Sensing Demand in Real Time</h2>
+                </div>
+                <p>Markets shift rapidly — and so should your supply chain. In the world of CPG, timing is everything. A trending product can go from must-have to forgotten in days. A sudden spike in demand can empty shelves before suppliers even notice.</p>
+                
+                <h3>Our CPG Solutions</h3>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4>Demand Sensing</h4>
+                        <p>Real-time analysis of market signals to anticipate demand fluctuations.</p>
+                        <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-warehouse"></i>
+                        </div>
+                        <h4>Inventory Optimization</h4>
+                        <p>AI-driven inventory management to reduce waste and maximize availability.</p>
+                        <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4>New Product Forecasting</h4>
+                        <p>Predict success of new product launches before they hit the market.</p>
+                        <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Manufacturing Section -->
+        <section id="manufacturing" class="industry-section">
+            <div class="container">
+                <div class="industry-header">
+                    <div class="industry-icon floating">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h2>Manufacturing: Intelligent Quality at Scale</h2>
+                </div>
+                <p>Consistent product quality is a non-negotiable. In manufacturing, one small defect can ripple into massive costs — rework, recalls, damaged reputation. Traditional quality control struggles to keep pace with today's fast, complex production lines. we bring intelligence to every inspection point.</p>
+                
+                <h3>Our Manufacturing Solutions</h3>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h4>Computer Vision QC</h4>
+                        <p>Automated visual inspection with AI-powered defect detection.</p>
+                        <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h4>Predictive Maintenance</h4>
+                        <p>Anticipate equipment failures before they occur.</p>
+                        <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h4>Process Optimization</h4>
+                        <p>Continuous improvement through AI-driven process analysis.</p>
+                        <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Healthcare Section -->
+        <section id="healthcare" class="industry-section">
+            <div class="container">
+                <div class="industry-header">
+                    <div class="industry-icon floating">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h2>Healthcare: Personalizing Patient Care</h2>
+                </div>
+                <p>Every patient deserves care that's tailored to their unique needs. Every patient is unique. We believe healthcare should be as individual as the people it serves. That's why we build AI-powered solutions that turn data into truly personalized care journeys.</p>
+                
+                <h3>Our Healthcare Solutions</h3>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-diagnoses"></i>
+                        </div>
+                        <h4>Diagnostic Support</h4>
+                        <p>AI-assisted diagnosis for improved accuracy and speed.</p>
+                        <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-procedures"></i>
+                        </div>
+                        <h4>Patient Flow Optimization</h4>
+                        <p>Predictive models for bed management and resource allocation.</p>
+                        <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <h4>Personalized Treatment</h4>
+                        <p>Tailored treatment plans based on patient data and outcomes.</p>
+                        <a href="#contact" class="btn btn-outline btn-sm">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="container">
+                <h2>Ready to Transform Your Business with AI?</h2>
+                <p>Contact us today to discuss how our AI/ML solutions can drive innovation, efficiency, and growth for your organization.</p>
+                <div class="hero-buttons">
+                    <a href="mailto:info@dhisaai.com" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Email Us
+                    </a>
+                    <a href="tel:+919886096090" class="btn btn-outline">
+                        <i class="fas fa-phone"></i> Call Us
+                    </a>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 Project Management Services. All rights reserved.</p>
-        <div class="social-icons">
-            <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/1234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
-            <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <div class="container">
+            <div class="footer-logo">
+                <i class="fas fa-brain"></i>
+                <span>Dhisa</span>Ai
+            </div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="copyright">
+                © 2025 DhishaAI Complete Analytics. All rights reserved.Designed By Jeevan K S
+            </div>
         </div>
     </footer>
 
     <script>
-        // JavaScript to handle the pop-up
-        const welcomePopup = document.getElementById('welcomePopup');
-        const overlay = document.getElementById('overlay');
-        const closeBtn = document.getElementById('closeBtn');
-        const getStartedBtn = document.getElementById('getStartedBtn');
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        const mainHeader = document.getElementById('mainHeader');
 
-        // Show pop-up and overlay when the page loads
-        window.onload = () => {
-            welcomePopup.style.display = 'block';
-            overlay.style.display = 'block';
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('show') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                mainHeader.classList.add('scrolled');
+            } else {
+                mainHeader.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('show')) {
+                        navMenu.classList.remove('show');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const animateSections = () => {
+            const sections = document.querySelectorAll('section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            sections.forEach(section => {
+                observer.observe(section);
+            });
         };
 
-        // Close pop-up and overlay when close button is clicked
-        closeBtn.addEventListener('click', () => {
-            welcomePopup.style.display = 'none';
-            overlay.style.display = 'none';
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.scrollY > 50) {
+                mainHeader.classList.add('scrolled');
+            }
+            
+            animateSections();
+            
+            // Hero animations
+            const heroTitle = document.querySelector('.hero h1');
+            const heroText = document.querySelector('.hero p');
+            const heroButtons = document.querySelector('.hero-buttons');
+            
+            heroTitle.style.animation = 'fadeInUp 0.8s ease forwards';
+            heroText.style.animation = 'fadeInUp 0.8s ease 0.3s forwards';
+            heroButtons.style.animation = 'fadeInUp 0.8s ease 0.6s forwards';
         });
 
-        // Close pop-up and overlay when "Get Started" button is clicked
-        getStartedBtn.addEventListener('click', () => {
-            welcomePopup.style.display = 'none';
-            overlay.style.display = 'none';
-        });
-
-        // Close pop-up and overlay when clicking outside the pop-up
-        overlay.addEventListener('click', () => {
-            welcomePopup.style.display = 'none';
-            overlay.style.display = 'none';
+        // Floating elements animation
+        const floatingElements = document.querySelectorAll('.floating');
+        floatingElements.forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.2}s`;
         });
     </script>
 </body>
