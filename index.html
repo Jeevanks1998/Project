@@ -98,15 +98,21 @@
             transform: rotate(360deg);
         }
         
-        /* Navigation */
+        /* Navigation - Fixed Alignment */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
         nav ul {
             display: flex;
             list-style: none;
+            align-items: center;
         }
         
         nav ul li {
             position: relative;
-            margin-left: 25px;
+            margin-left: 20px;
         }
         
         nav ul li a {
@@ -117,6 +123,7 @@
             display: block;
             transition: color 0.3s;
             position: relative;
+            white-space: nowrap;
         }
         
         nav ul li a::after {
@@ -246,6 +253,47 @@
         .slide-content p {
             font-size: 1.2rem;
             margin-bottom: 20px;
+        }
+        
+        .hero-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .hero-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+        
+        .icon-circle i {
+            font-size: 30px;
+            color: var(--primary);
+        }
+        
+        .icon-circle:hover {
+            transform: scale(1.1);
+            background-color: white;
+        }
+        
+        .icon-text {
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
         }
         
         .btn {
@@ -478,6 +526,20 @@
         }
         
         /* Responsive Styles */
+        @media (max-width: 1200px) {
+            nav ul li {
+                margin-left: 15px;
+            }
+            
+            nav ul li a {
+                font-size: 14px;
+            }
+            
+            .logo h1 {
+                font-size: 22px;
+            }
+        }
+        
         @media (max-width: 992px) {
             nav ul {
                 display: none;
@@ -507,6 +569,11 @@
                 width: 100%;
             }
             
+            nav ul li a {
+                font-size: 16px;
+                padding: 12px 0;
+            }
+            
             .dropdown-content {
                 position: static;
                 display: none;
@@ -532,6 +599,20 @@
             
             .slide-content p {
                 font-size: 1rem;
+            }
+            
+            .hero-icons {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .icon-circle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .icon-circle i {
+                font-size: 24px;
             }
             
             .dropdown-content a:hover {
@@ -560,11 +641,15 @@
             .about-image {
                 order: -1;
             }
+            
+            .logo h1 {
+                font-size: 18px;
+            }
         }
         
         @media (max-width: 576px) {
             .logo h1 {
-                font-size: 20px;
+                font-size: 16px;
             }
             
             .motivation-message {
@@ -573,7 +658,7 @@
             }
             
             .hero {
-                height: 50vh;
+                height: 70vh;
             }
             
             .slide-content h2 {
@@ -583,6 +668,14 @@
             .footer-content {
                 flex-direction: column;
                 gap: 30px;
+            }
+            
+            .hero-icons {
+                display: none;
+            }
+            
+            .nav-container {
+                padding: 10px 0;
             }
         }
     </style>
@@ -630,17 +723,7 @@
                             <a href="#">Entrance Examination</a>
                         </div>
                     </li>
-                    <li class="dropdown-toggle">
-                        <a href="#">Courses <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-content">
-                            <a href="#">Department Of Basic Sciences</a>
-                            <a href="#">Department Of Computer Science Engineering</a>
-                            <a href="#">Department Of Electronic and Communication Engineering</a>
-                            <a href="#">Department Of Mechanical Engineering</a>
-                            <a href="#">Department Of Civil Engineering</a>
-                            <a href="#">Department Of MBA</a>
-                        </div>
-                    </li>
+                        <li><a href="course.html">Courses</a></li>
                     <li><a href="#">Careers</a></li>
                     <li class="dropdown-toggle">
                         <a href="#">Placements <i class="fas fa-chevron-down"></i></a>
@@ -652,6 +735,9 @@
                             <a href="#">Pre-Placement Training</a>
                         </div>
                     </li>
+                    <!-- New menu items -->
+                    <li><a href="result.html">Results</a></li>
+                    <li><a href="#">Exam Fees</a></li>
                 </ul>
             </nav>
         </div>
@@ -659,25 +745,106 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/random/1600x900/?college');">
+        <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');">
             <div class="slide-content">
                 <h2>Welcome to Janavikas Institute of Technology</h2>
                 <p>Excellence in Education Since 2001</p>
                 <a href="#" class="btn">Explore Programs</a>
+                
+                <div class="hero-icons">
+                    <div class="hero-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <span class="icon-text">Academics</span>
+                    </div>
+                    <div class="hero-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <span class="icon-text">Research</span>
+                    </div>
+                    <div class="hero-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <span class="icon-text">Library</span>
+                    </div>
+                    <div class="hero-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <span class="icon-text">Labs</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/random/1600x900/?campus');">
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');">
             <div class="slide-content">
                 <h2>State-of-the-Art Infrastructure</h2>
                 <p>Modern facilities for innovative learning</p>
                 <a href="#" class="btn">View Campus</a>
+                
+                <div class="hero-icons">
+                    <div class="hero-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <span class="icon-text">Wi-Fi Campus</span>
+                    </div>
+                    <div class="hero-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <span class="icon-text">Advanced Labs</span>
+                    </div>
+                    <div class="hero-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <span class="icon-text">Digital Library</span>
+                    </div>
+                    <div class="hero-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <span class="icon-text">Sports</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://source.unsplash.com/random/1600x900/?graduation');">
+        <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');">
             <div class="slide-content">
                 <h2>Shape Your Future With Us</h2>
                 <p>90% Placement Rate in 2023</p>
                 <a href="#" class="btn">Placement Details</a>
+                
+                <div class="hero-icons">
+                    <div class="hero-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <span class="icon-text">Placements</span>
+                    </div>
+                    <div class="hero-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <span class="icon-text">Industry Connect</span>
+                    </div>
+                    <div class="hero-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span class="icon-text">Career Growth</span>
+                    </div>
+                    <div class="hero-icon">
+                        <div class="icon-circle">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <span class="icon-text">Alumni Network</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -696,12 +863,7 @@
                     <p>JVIT is approved by AICTE and affiliated to VTU, committed to providing value-based education and transforming students into competent professionals.</p>
                     <a href="#" class="btn">Learn More</a>
                 </div>
-                <div class="about-image">
-                    <!-- College image would go here -->
-                    <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; background-color:#1a365d; color:white;">
-                        <p>College Campus Image</p>
-                    </div>
-                </div>
+                <div class="about-image" style="background-image: url('https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center;"></div>
             </div>
         </div>
     </section>
@@ -759,6 +921,8 @@
                         <li><a href="#">Courses</a></li>
                         <li><a href="#">Careers</a></li>
                         <li><a href="#">Placements</a></li>
+                        <li><a href="#">Results</a></li>
+                        <li><a href="#">Exam Fees</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
