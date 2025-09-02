@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Janavikas Institute of Technology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        :root {
+            --primary: #1a365d;
+            --secondary: #e9b949;
+            --accent: #2b6cb0;
+            --light: #f8f9fa;
+            --dark: #2d3748;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            overflow-x: hidden;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .motivation-message {
+            text-align: center;
+            padding: 8px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 16px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { background-color: var(--secondary); }
+            50% { background-color: #f8d76c; }
+            100% { background-color: var(--secondary); }
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+        
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+            transition: transform 0.3s;
+        }
+        
+        .logo:hover .logo-img {
+            transform: rotate(360deg);
+        }
+        
+        /* Navigation - Fixed Alignment */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+        
+        nav ul li {
+            position: relative;
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 5px;
+            display: block;
+            transition: color 0.3s;
+            position: relative;
+            white-space: nowrap;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .dropdown-content {
+            display: block;
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-top: 3px solid var(--secondary);
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a {
+            color: var(--dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            border-bottom: 1px solid #eee;
+            transition: all 0.2s;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: var(--primary);
+            padding-left: 20px;
+        }
+        
+        nav ul li:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .mobile-menu-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(to right, rgba(26, 54, 93, 0.9), rgba(26, 54, 93, 0.7)), url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Courses Section */
+        .courses-section {
+            padding: 70px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .course-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .course-icon {
+            height: 120px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+        }
+        
+        .course-content {
+            padding: 25px;
+        }
+        
+        .course-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .course-content p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        .course-details {
+            margin-bottom: 20px;
+        }
+        
+        .course-details div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .course-details span {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: #d4a742;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1001;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: modalFade 0.3s;
+        }
+        
+        @keyframes modalFade {
+            from {opacity: 0; transform: translateY(-50px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        /* Payment Page Styles */
+        .payment-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .payment-details {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: var(--light);
+            border-radius: 8px;
+        }
+        
+        .payment-details h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .payment-option {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .payment-option:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .payment-option i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .footer-column ul li:hover {
+            transform: translateX(5px);
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            color: var(--dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: #d4a742;
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            nav ul li {
+                margin-left: 15px;
+            }
+            
+            nav ul li a {
+                font-size: 14px;
+            }
+            
+            .logo h1 {
+                font-size: 22px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                transform: translateY(-10px);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+            
+            nav ul.show {
+                display: flex;
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+                width: 100%;
+            }
+            
+            nav ul li a {
+                font-size: 16px;
+                padding: 12px 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                display: none;
+                margin-left: 20px;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                width: calc(100% - 20px);
+            }
+            
+            nav ul li.active .dropdown-content {
+                display: block;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .logo h1 {
+                font-size: 18px;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 16px;
+            }
+            
+            .motivation-message {
+                font-size: 14px;
+                padding: 6px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .nav-container {
+                padding: 10px 0;
+            }
+            
+            .course-icon {
+                height: 100px;
+            }
+            
+            .course-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Motivation Message -->
+    <div class="motivation-message">
+        Transforming Education, Empowering Futures - Where Innovation Meets Excellence
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <div class="logo-img">JIT</div>
+                <h1>Janavikas Institute of Technology</h1>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="dropdown-toggle">
+                        <a href="#">About Us <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">Why Should You Join JVIT</a>
+                            <a href="#">Core Messages</a>
+                            <a href="#">Key Executive List</a>
+                            <a href="#">Academics</a>
+                            <a href="#">Facilities</a>
+                            <a href="#">Statutory Committees</a>
+                            <a href="#">Approvals & Recognition</a>
+                            <a href="#">IQAC</a>
+                        </div>
+                    </li>
+                    <li class="dropdown-toggle">
+                        <a href="#">Admission <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">Admission Details</a>
+                            <a href="#">Admission Notification</a>
+                            <a href="#">Fee Notification</a>
+                            <a href="#">Entrance Examination</a>
+                        </div>
+                    </li>
+                    <li><a href="courses.html" class="active">Courses</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li class="dropdown-toggle">
+                        <a href="#">Placements <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="#">Overview</a>
+                            <a href="#">TPO Message</a>
+                            <a href="#">Placement Faculties</a>
+                            <a href="#">Achievements</a>
+                            <a href="#">Pre-Placement Training</a>
+                        </div>
+                    </li>
+                    <li><a href="result.html">Results</a></li>
+                    <li><a href="#">Exam Fees</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1>Our Engineering Courses</h1>
+            <p>Explore our wide range of engineering programs designed to shape the future leaders of technology and innovation</p>
+        </div>
+    </div>
+
+    <!-- Courses Section -->
+    <section class="courses-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Engineering Programs</h2>
+            </div>
+            <div class="courses-grid" id="courses-container">
+                <!-- Courses will be dynamically added here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Modal -->
+    <div class="modal" id="applicationModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h2>Course Application Form</h2>
+            <form id="applicationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="course">Selected Course</label>
+                    <input type="text" id="course" readonly>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="qualification">Highest Qualification</label>
+                        <input type="text" id="qualification" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="percentage">Percentage/CGPA</label>
+                        <input type="text" id="percentage" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" rows="3" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Page (initially hidden) -->
+    <div id="paymentPage" style="display: none;">
+        <div class="container">
+            <div class="payment-container">
+                <h2>Payment Portal</h2>
+                <div class="payment-details">
+                    <h3>Payment Details</h3>
+                    <p><strong>Course:</strong> <span id="paymentCourse"></span></p>
+                    <p><strong>Amount:</strong> ₹ <span id="paymentAmount"></span></p>
+                    <p><strong>Application ID:</strong> <span id="applicationId"></span></p>
+                </div>
+                
+                <h3>Select Payment Method</h3>
+                <div class="payment-options">
+                    <div class="payment-option" onclick="processPayment('Credit Card')">
+                        <i class="fas fa-credit-card"></i>
+                        <p>Credit Card</p>
+                    </div>
+                    <div class="payment-option" onclick="processPayment('Debit Card')">
+                        <i class="fas fa-credit-card"></i>
+                        <p>Debit Card</p>
+                    </div>
+                    <div class="payment-option" onclick="processPayment('Net Banking')">
+                        <i class="fas fa-university"></i>
+                        <p>Net Banking</p>
+                    </div>
+                    <div class="payment-option" onclick="processPayment('UPI')">
+                        <i class="fas fa-mobile-alt"></i>
+                        <p>UPI</p>
+                    </div>
+                </div>
+                
+                <button class="btn" style="margin-top: 30px;" onclick="goBackToCourses()">Back to Courses</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <p>Janavikas Institute of Technology</p>
+                    <p>#123, Education Road, Knowledge City</p>
+                    <p>Karnataka, India - 560001</p>
+                    <p>Phone: +91 80 23456789</p>
+                    <p>Email: info@jvit.edu.in</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Admission</a></li>
+                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Placements</a></li>
+                        <li><a href="#">Results</a></li>
+                        <li><a href="#">Exam Fees</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Library</a></li>
+                        <li><a href="#">Campus Portal</a></li>
+                        <li><a href="#">E-Learning</a></li>
+                        <li><a href="#">Research Portal</a></li>
+                        <li><a href="#">Alumni Network</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Janavikas Institute of Technology. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Course data with icons
+        const courses = [
+            {
+                name: "Computer Science Engineering",
+                icon: "fa-laptop-code",
+                duration: "4 Years",
+                fees: "₹1,20,000 per year",
+                seats: "120",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Electrical Engineering",
+                icon: "fa-bolt",
+                duration: "4 Years",
+                fees: "₹1,15,000 per year",
+                seats: "90",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Civil Engineering",
+                icon: "fa-hard-hat",
+                duration: "4 Years",
+                fees: "₹1,10,000 per year",
+                seats: "90",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Mechanical Engineering",
+                icon: "fa-cogs",
+                duration: "4 Years",
+                fees: "₹1,15,000 per year",
+                seats: "120",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Electronics and Communication Engineering",
+                icon: "fa-microchip",
+                duration: "4 Years",
+                fees: "₹1,18,000 per year",
+                seats: "90",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Artificial Intelligence and Data Science",
+                icon: "fa-brain",
+                duration: "4 Years",
+                fees: "₹1,25,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Aerospace Engineering",
+                icon: "fa-rocket",
+                duration: "4 Years",
+                fees: "₹1,30,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Chemical Engineering",
+                icon: "fa-flask",
+                duration: "4 Years",
+                fees: "₹1,15,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Biomedical Engineering",
+                icon: "fa-heartbeat",
+                duration: "4 Years",
+                fees: "₹1,20,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCB/PCM"
+            },
+            {
+                name: "Automobile Engineering",
+                icon: "fa-car",
+                duration: "4 Years",
+                fees: "₹1,15,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Agricultural Engineering",
+                icon: "fa-tractor",
+                duration: "4 Years",
+                fees: "₹1,10,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM/PCB"
+            },
+            {
+                name: "Petroleum Engineering",
+                icon: "fa-oil-well",
+                duration: "4 Years",
+                fees: "₹1,25,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Environmental Engineering",
+                icon: "fa-leaf",
+                duration: "4 Years",
+                fees: "₹1,15,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Robotics Engineering",
+                icon: "fa-robot",
+                duration: "4 Years",
+                fees: "₹1,25,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Marine Engineering",
+                icon: "fa-ship",
+                duration: "4 Years",
+                fees: "₹1,30,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Structural Engineering",
+                icon: "fa-building",
+                duration: "4 Years",
+                fees: "₹1,15,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Geotechnical Engineering",
+                icon: "fa-mountain",
+                duration: "4 Years",
+                fees: "₹1,15,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Software Development",
+                icon: "fa-code",
+                duration: "4 Years",
+                fees: "₹1,20,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Information Engineering",
+                icon: "fa-server",
+                duration: "4 Years",
+                fees: "₹1,18,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Autonomous Robotics",
+                icon: "fa-robot",
+                duration: "4 Years",
+                fees: "₹1,25,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Electronic Engineering",
+                icon: "fa-bolt",
+                duration: "4 Years",
+                fees: "₹1,15,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "Aeronautical Engineering",
+                icon: "fa-plane",
+                duration: "4 Years",
+                fees: "₹1,30,000 per year",
+                seats: "60",
+                eligibility: "10+2 with PCM"
+            },
+            {
+                name: "MBA",
+                icon: "fa-chart-line",
+                duration: "2 Years",
+                fees: "₹1,50,000 per year",
+                seats: "120",
+                eligibility: "Bachelor's Degree"
+            },
+            {
+                name: "MCA",
+                icon: "fa-laptop",
+                duration: "2 Years",
+                fees: "₹1,00,000 per year",
+                seats: "60",
+                eligibility: "Bachelor's Degree with Mathematics"
+            },
+            {
+                name: "BCA",
+                icon: "fa-desktop",
+                duration: "3 Years",
+                fees: "₹80,000 per year",
+                seats: "90",
+                eligibility: "10+2 with Mathematics"
+            },
+            {
+                name: "BCOM",
+                icon: "fa-calculator",
+                duration: "3 Years",
+                fees: "₹70,000 per year",
+                seats: "120",
+                eligibility: "10+2 in Commerce"
+            }
+        ];
+
+        // Render courses
+        function renderCourses() {
+            const container = document.getElementById('courses-container');
+            container.innerHTML = '';
+            
+            courses.forEach(course => {
+                const courseCard = document.createElement('div');
+                courseCard.className = 'course-card';
+                courseCard.innerHTML = `
+                    <div class="course-icon">
+                        <i class="fas ${course.icon}"></i>
+                    </div>
+                    <div class="course-content">
+                        <h3>${course.name}</h3>
+                        <p>Comprehensive program designed to provide in-depth knowledge and practical skills.</p>
+                        <div class="course-details">
+                            <div><span>Duration:</span> ${course.duration}</div>
+                            <div><span>Fees:</span> ${course.fees}</div>
+                            <div><span>Seats:</span> ${course.seats}</div>
+                            <div><span>Eligibility:</span> ${course.eligibility}</div>
+                        </div>
+                        <button class="btn apply-btn" data-course="${course.name}">Apply Now</button>
+                    </div>
+                `;
+                container.appendChild(courseCard);
+            });
+            
+            // Add event listeners to apply buttons
+            document.querySelectorAll('.apply-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    openApplicationForm(this.getAttribute('data-course'));
+                });
+            });
+        }
+
+        // Open application form
+        function openApplicationForm(courseName) {
+            document.getElementById('course').value = courseName;
+            document.getElementById('applicationModal').style.display = 'block';
+        }
+
+        // Close modal
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('applicationModal').style.display = 'none';
+        });
+
+        // Handle form submission
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Generate application ID
+            const applicationId = 'APP' + Math.floor(100000 + Math.random() * 900000);
+            
+            // Get form data
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                course: document.getElementById('course').value,
+                qualification: document.getElementById('qualification').value,
+                percentage: document.getElementById('percentage').value,
+                address: document.getElementById('address').value,
+                applicationId: applicationId,
+                date: new Date().toLocaleDateString()
+            };
+            
+            // Generate PDF
+            generatePDF(formData);
+            
+            // Close modal
+            document.getElementById('applicationModal').style.display = 'none';
+            
+            // Show payment page
+            showPaymentPage(formData.course, applicationId);
+        });
+
+        // Generate PDF
+        function generatePDF(data) {
+            // In a real implementation, you would use jsPDF to create a PDF
+            // For this demo, we'll simulate the download
+            console.log('Generating PDF with data:', data);
+            alert(`Application submitted successfully! Your application ID is ${data.applicationId}. PDF would download in a real implementation.`);
+        }
+
+        // Show payment page
+        function showPaymentPage(courseName, applicationId) {
+            // Hide main content
+            document.querySelector('.page-header').style.display = 'none';
+            document.querySelector('.courses-section').style.display = 'none';
+            document.querySelector('footer').style.display = 'none';
+            
+            // Show payment page
+            document.getElementById('paymentPage').style.display = 'block';
+            
+            // Set payment details
+            document.getElementById('paymentCourse').textContent = courseName;
+            document.getElementById('paymentAmount').textContent = '5,000'; // Application fee
+            document.getElementById('applicationId').textContent = applicationId;
+        }
+
+        // Process payment
+        function processPayment(method) {
+            alert(`In a real implementation, this would redirect to ${method} payment processing. For demo, payment is considered successful.`);
+            
+            // Show success message
+            alert('Payment successful! Your application has been submitted.');
+            
+            // Redirect to courses page
+            goBackToCourses();
+        }
+
+        // Go back to courses page
+        function goBackToCourses() {
+            // Show main content
+            document.querySelector('.page-header').style.display = 'block';
+            document.querySelector('.courses-section').style.display = 'block';
+            document.querySelector('footer').style.display = 'block';
+            
+            // Hide payment page
+            document.getElementById('paymentPage').style.display = 'none';
+            
+            // Reset form
+            document.getElementById('applicationForm').reset();
+        }
+
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('menu').classList.toggle('show');
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            renderCourses();
+            
+            // Close modal if clicked outside
+            window.addEventListener('click', function(e) {
+                if (e.target === document.getElementById('applicationModal')) {
+                    document.getElementById('applicationModal').style.display = 'none';
+                }
+            });
+        });
+
+        // Scroll animations and back to top button
+        function checkScroll() {
+            const backToTop = document.querySelector('.back-to-top');
+            
+            // Back to top button
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+        
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+    </script>
+</body>
+</html>
