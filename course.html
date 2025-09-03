@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <style>
         /* Reset and Base Styles */
         * {
@@ -448,6 +449,155 @@
             color: var(--primary);
         }
         
+        /* Fee Receipt Styles */
+        .receipt-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .receipt-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .receipt-details {
+            margin-bottom: 30px;
+        }
+        
+        .receipt-details h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .receipt-row {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .receipt-label {
+            flex: 1;
+            font-weight: 600;
+        }
+        
+        .receipt-value {
+            flex: 2;
+        }
+        
+        .receipt-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        /* Search Receipt Section */
+        .search-receipt {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .search-form {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .search-form input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .search-form button {
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .search-form button:hover {
+            background-color: #2a4a7a;
+        }
+        
+        .search-result {
+            margin-top: 30px;
+            display: none;
+        }
+        
+        /* Enhanced Receipt Styling */
+        .receipt-enhanced {
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            padding: 30px;
+            position: relative;
+            background: linear-gradient(white, white), 
+                        linear-gradient(to right, var(--primary), var(--secondary));
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+            border: 2px solid transparent;
+        }
+        
+        .receipt-watermark {
+            position: absolute;
+            opacity: 0.03;
+            font-size: 120px;
+            font-weight: bold;
+            color: var(--primary);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .receipt-header h2 {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+        
+        .receipt-header h3 {
+            color: var(--secondary);
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+        
+        .receipt-header p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .receipt-divider {
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            margin: 20px 0;
+        }
+        
+        .receipt-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
+            font-style: italic;
+            color: #666;
+        }
+        
         /* Footer */
         footer {
             background-color: var(--primary);
@@ -606,6 +756,10 @@
                 flex-direction: column;
                 gap: 0;
             }
+            
+            .search-form {
+                flex-direction: column;
+            }
         }
         
         @media (max-width: 768px) {
@@ -627,6 +781,15 @@
             
             .modal-content {
                 padding: 20px;
+            }
+            
+            .receipt-row {
+                flex-direction: column;
+                margin-bottom: 15px;
+            }
+            
+            .receipt-label, .receipt-value {
+                flex: auto;
             }
         }
         
@@ -656,6 +819,14 @@
             .course-content {
                 padding: 20px;
             }
+            
+            .receipt-enhanced {
+                padding: 15px;
+            }
+            
+            .receipt-watermark {
+                font-size: 80px;
+            }
         }
     </style>
 </head>
@@ -680,42 +851,7 @@
             <nav>
                 <ul id="menu">
                     <li><a href="index.html">Home</a></li>
-                    <li class="dropdown-toggle">
-                        <a href="#">About Us <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-content">
-                            <a href="#">Why Should You Join JVIT</a>
-                            <a href="#">Core Messages</a>
-                            <a href="#">Key Executive List</a>
-                            <a href="#">Academics</a>
-                            <a href="#">Facilities</a>
-                            <a href="#">Statutory Committees</a>
-                            <a href="#">Approvals & Recognition</a>
-                            <a href="#">IQAC</a>
-                        </div>
-                    </li>
-                    <li class="dropdown-toggle">
-                        <a href="#">Admission <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-content">
-                            <a href="#">Admission Details</a>
-                            <a href="#">Admission Notification</a>
-                            <a href="#">Fee Notification</a>
-                            <a href="#">Entrance Examination</a>
-                        </div>
-                    </li>
-                    <li><a href="courses.html" class="active">Courses</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li class="dropdown-toggle">
-                        <a href="#">Placements <i class="fas fa-chevron-down"></i></a>
-                        <div class="dropdown-content">
-                            <a href="#">Overview</a>
-                            <a href="#">TPO Message</a>
-                            <a href="#">Placement Faculties</a>
-                            <a href="#">Achievements</a>
-                            <a href="#">Pre-Placement Training</a>
-                        </div>
-                    </li>
-                    <li><a href="result.html">Results</a></li>
-                    <li><a href="#">Exam Fees</a></li>
+                    <li><a href="#" id="feeReceiptLink">Fee Receipt</a></li>
                 </ul>
             </nav>
         </div>
@@ -790,7 +926,7 @@
                     <textarea id="address" rows="3" required></textarea>
                 </div>
                 
-                <button type="submit" class="btn">Submit Application</button>
+                <button type="submit" class="btn">Proceed to Payment</button>
             </form>
         </div>
     </div>
@@ -803,31 +939,127 @@
                 <div class="payment-details">
                     <h3>Payment Details</h3>
                     <p><strong>Course:</strong> <span id="paymentCourse"></span></p>
-                    <p><strong>Amount:</strong> ₹ <span id="paymentAmount"></span></p>
+                    <p><strong>Application Fee:</strong> ₹ <span id="paymentAmount">5,000</span></p>
                     <p><strong>Application ID:</strong> <span id="applicationId"></span></p>
                 </div>
                 
                 <h3>Select Payment Method</h3>
                 <div class="payment-options">
-                    <div class="payment-option" onclick="processPayment('Credit Card')">
+                    <div class="payment-option" onclick="initiateRazorpayPayment()">
                         <i class="fas fa-credit-card"></i>
-                        <p>Credit Card</p>
-                    </div>
-                    <div class="payment-option" onclick="processPayment('Debit Card')">
-                        <i class="fas fa-credit-card"></i>
-                        <p>Debit Card</p>
-                    </div>
-                    <div class="payment-option" onclick="processPayment('Net Banking')">
-                        <i class="fas fa-university"></i>
-                        <p>Net Banking</p>
-                    </div>
-                    <div class="payment-option" onclick="processPayment('UPI')">
-                        <i class="fas fa-mobile-alt"></i>
-                        <p>UPI</p>
+                        <p>Pay with Razorpay</p>
                     </div>
                 </div>
                 
                 <button class="btn" style="margin-top: 30px;" onclick="goBackToCourses()">Back to Courses</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fee Receipt Page (initially hidden) -->
+    <div id="feeReceiptPage" style="display: none;">
+        <div class="container">
+            <div class="search-receipt">
+                <h2>Search Fee Receipt</h2>
+                <p>Enter your Application ID to view and download your fee receipt</p>
+                
+                <div class="search-form">
+                    <input type="text" id="searchAppId" placeholder="Enter Application ID (e.g., APP123456)">
+                    <button onclick="searchReceipt()">Search Receipt</button>
+                </div>
+                
+                <div class="search-result" id="searchResult">
+                    <!-- Search results will be displayed here -->
+                </div>
+            </div>
+            
+            <div class="receipt-container" id="receiptDisplay" style="display: none;">
+                <div class="receipt-enhanced">
+                    <div class="receipt-watermark">JANAVIKAS INSTITUTE</div>
+                    
+                    <div class="receipt-header">
+                        <h2>Janavikas Institute of Technology</h2>
+                        <h3>Official Fee Receipt</h3>
+                        <p>#123, Education Road, Knowledge City, Karnataka, India - 560001</p>
+                        <p>Phone: +91 80 23456789 | Email: accounts@jvit.edu.in</p>
+                    </div>
+                    
+                    <div class="receipt-divider"></div>
+                    
+                    <div class="receipt-details">
+                        <h3>Payment Information</h3>
+                        <div class="receipt-row">
+                            <div class="receipt-label">Receipt Number:</div>
+                            <div class="receipt-value" id="receiptNumber"></div>
+                        </div>
+                        <div class="receipt-row">
+                            <div class="receipt-label">Date of Payment:</div>
+                            <div class="receipt-value" id="receiptDate"></div>
+                        </div>
+                        <div class="receipt-row">
+                            <div class="receipt-label">Application ID:</div>
+                            <div class="receipt-value" id="receiptAppId"></div>
+                        </div>
+                        <div class="receipt-row">
+                            <div class="receipt-label">Payment Method:</div>
+                            <div class="receipt-value" id="receiptPaymentMethod"></div>
+                        </div>
+                        <div class="receipt-row">
+                            <div class="receipt-label">Transaction ID:</div>
+                            <div class="receipt-value" id="receiptTransactionId"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="receipt-divider"></div>
+                    
+                    <div class="receipt-details">
+                        <h3>Student Information</h3>
+                        <div class="receipt-row">
+                            <div class="receipt-label">Full Name:</div>
+                            <div class="receipt-value" id="receiptStudentName"></div>
+                        </div>
+                        <div class="receipt-row">
+                            <div class="receipt-label">Course Applied:</div>
+                            <div class="receipt-value" id="receiptCourse"></div>
+                        </div>
+                        <div class="receipt-row">
+                            <div class="receipt-label">Email Address:</div>
+                            <div class="receipt-value" id="receiptEmail"></div>
+                        </div>
+                        <div class="receipt-row">
+                            <div class="receipt-label">Contact Number:</div>
+                            <div class="receipt-value" id="receiptPhone"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="receipt-divider"></div>
+                    
+                    <div class="receipt-details">
+                        <h3>Payment Details</h3>
+                        <div class="receipt-row">
+                            <div class="receipt-label">Description:</div>
+                            <div class="receipt-value">Course Application Fee</div>
+                        </div>
+                        <div class="receipt-row">
+                            <div class="receipt-label">Amount Paid:</div>
+                            <div class="receipt-value">₹ 5,000.00</div>
+                        </div>
+                        <div class="receipt-row">
+                            <div class="receipt-label">Payment Status:</div>
+                            <div class="receipt-value" id="receiptStatus">Success</div>
+                        </div>
+                    </div>
+                    
+                    <div class="receipt-footer">
+                        <p>This is a computer-generated receipt and does not require a physical signature.</p>
+                        <p>Thank you for choosing Janavikas Institute of Technology!</p>
+                    </div>
+                </div>
+                
+                <div class="receipt-actions">
+                    <button class="btn" onclick="downloadReceipt()">Download Receipt as PDF</button>
+                    <button class="btn" style="background-color: var(--primary); margin-left: 10px;" onclick="goBackToCourses()">Back to Courses</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1092,6 +1324,10 @@
             }
         ];
 
+        // Store application data
+        let currentApplication = {};
+        let paymentData = {};
+
         // Render courses
         function renderCourses() {
             const container = document.getElementById('courses-container');
@@ -1159,8 +1395,11 @@
                 date: new Date().toLocaleDateString()
             };
             
-            // Generate PDF
-            generatePDF(formData);
+            // Store application data
+            currentApplication = formData;
+            
+            // Store in localStorage for demo purposes
+            localStorage.setItem('currentApplication', JSON.stringify(formData));
             
             // Close modal
             document.getElementById('applicationModal').style.display = 'none';
@@ -1168,14 +1407,6 @@
             // Show payment page
             showPaymentPage(formData.course, applicationId);
         });
-
-        // Generate PDF
-        function generatePDF(data) {
-            // In a real implementation, you would use jsPDF to create a PDF
-            // For this demo, we'll simulate the download
-            console.log('Generating PDF with data:', data);
-            alert(`Application submitted successfully! Your application ID is ${data.applicationId}. PDF would download in a real implementation.`);
-        }
 
         // Show payment page
         function showPaymentPage(courseName, applicationId) {
@@ -1189,19 +1420,197 @@
             
             // Set payment details
             document.getElementById('paymentCourse').textContent = courseName;
-            document.getElementById('paymentAmount').textContent = '5,000'; // Application fee
             document.getElementById('applicationId').textContent = applicationId;
         }
 
-        // Process payment
-        function processPayment(method) {
-            alert(`In a real implementation, this would redirect to ${method} payment processing. For demo, payment is considered successful.`);
+        // Initialize Razorpay payment
+        function initiateRazorpayPayment() {
+            // Razorpay options
+            const options = {
+                key: "rzp_test_1DP5mmOlF5G5ag", // Test API key (replace with your actual key)
+                amount: 500000, // 5000 rupees in paise
+                currency: "INR",
+                name: "Janavikas Institute of Technology",
+                description: "Course Application Fee",
+                image: "https://example.com/your_logo", // Add your logo URL
+                order_id: "", // This will be generated on the server side
+                handler: function(response) {
+                    // Handle successful payment
+                    paymentData = {
+                        razorpay_payment_id: response.razorpay_payment_id,
+                        razorpay_order_id: response.razorpay_order_id,
+                        razorpay_signature: response.razorpay_signature,
+                        status: "success",
+                        timestamp: new Date().toISOString()
+                    };
+                    
+                    // Store payment data
+                    localStorage.setItem('paymentData', JSON.stringify(paymentData));
+                    
+                    // Generate receipt
+                    generateReceipt();
+                },
+                prefill: {
+                    name: currentApplication.firstName + " " + currentApplication.lastName,
+                    email: currentApplication.email,
+                    contact: currentApplication.phone
+                },
+                notes: {
+                    address: currentApplication.address,
+                    course: currentApplication.course
+                },
+                theme: {
+                    color: "#1a365d"
+                }
+            };
             
-            // Show success message
-            alert('Payment successful! Your application has been submitted.');
+            // In a real implementation, you would create an order on your server first
+            // For demo purposes, we'll directly open the payment modal
+            const rzp = new Razorpay(options);
+            rzp.open();
             
-            // Redirect to courses page
-            goBackToCourses();
+            rzp.on('payment.failed', function(response) {
+                alert("Payment failed. Please try again.");
+                console.error(response.error);
+            });
+        }
+
+        // Generate receipt after successful payment
+        function generateReceipt() {
+            // Hide payment page
+            document.getElementById('paymentPage').style.display = 'none';
+            
+            // Show receipt page
+            document.getElementById('feeReceiptPage').style.display = 'block';
+            
+            // Generate receipt number
+            const receiptNumber = 'RCPT' + Math.floor(100000 + Math.random() * 900000);
+            
+            // Fill receipt details
+            document.getElementById('receiptNumber').textContent = receiptNumber;
+            document.getElementById('receiptDate').textContent = new Date().toLocaleDateString();
+            document.getElementById('receiptAppId').textContent = currentApplication.applicationId;
+            document.getElementById('receiptPaymentMethod').textContent = 'Razorpay';
+            document.getElementById('receiptTransactionId').textContent = paymentData.razorpay_payment_id;
+            document.getElementById('receiptStudentName').textContent = currentApplication.firstName + ' ' + currentApplication.lastName;
+            document.getElementById('receiptCourse').textContent = currentApplication.course;
+            document.getElementById('receiptEmail').textContent = currentApplication.email;
+            document.getElementById('receiptPhone').textContent = currentApplication.phone;
+            
+            // Store receipt data
+            const receiptData = {
+                receiptNumber: receiptNumber,
+                applicationData: currentApplication,
+                paymentData: paymentData
+            };
+            
+            localStorage.setItem('receiptData', JSON.stringify(receiptData));
+            localStorage.setItem(currentApplication.applicationId, JSON.stringify(receiptData));
+            
+            // Show the receipt display and hide search
+            document.getElementById('receiptDisplay').style.display = 'block';
+            document.getElementById('searchResult').style.display = 'none';
+        }
+
+        // Search for receipt by application ID
+        function searchReceipt() {
+            const appId = document.getElementById('searchAppId').value.trim();
+            const searchResult = document.getElementById('searchResult');
+            
+            if (!appId) {
+                searchResult.innerHTML = '<div class="alert alert-error">Please enter an Application ID</div>';
+                searchResult.style.display = 'block';
+                return;
+            }
+            
+            // Check if receipt exists in localStorage
+            const receiptData = localStorage.getItem(appId);
+            
+            if (receiptData) {
+                const data = JSON.parse(receiptData);
+                
+                // Fill receipt details
+                document.getElementById('receiptNumber').textContent = data.receiptNumber;
+                document.getElementById('receiptDate').textContent = new Date(data.paymentData.timestamp).toLocaleDateString();
+                document.getElementById('receiptAppId').textContent = data.applicationData.applicationId;
+                document.getElementById('receiptPaymentMethod').textContent = 'Razorpay';
+                document.getElementById('receiptTransactionId').textContent = data.paymentData.razorpay_payment_id;
+                document.getElementById('receiptStudentName').textContent = data.applicationData.firstName + ' ' + data.applicationData.lastName;
+                document.getElementById('receiptCourse').textContent = data.applicationData.course;
+                document.getElementById('receiptEmail').textContent = data.applicationData.email;
+                document.getElementById('receiptPhone').textContent = data.applicationData.phone;
+                
+                // Show the receipt and hide search result
+                document.getElementById('receiptDisplay').style.display = 'block';
+                searchResult.style.display = 'none';
+            } else {
+                searchResult.innerHTML = '<div class="alert alert-error">No receipt found for Application ID: ' + appId + '</div>';
+                searchResult.style.display = 'block';
+                document.getElementById('receiptDisplay').style.display = 'none';
+            }
+        }
+
+        // Download receipt as PDF
+        function downloadReceipt() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Add college logo and header
+            doc.setFillColor(26, 54, 93);
+            doc.rect(0, 0, 210, 30, 'F');
+            doc.setFontSize(22);
+            doc.setTextColor(255, 255, 255);
+            doc.text('Janavikas Institute of Technology', 105, 15, { align: 'center' });
+            
+            doc.setFontSize(16);
+            doc.setTextColor(233, 185, 73);
+            doc.text('OFFICIAL FEE RECEIPT', 105, 25, { align: 'center' });
+            
+            // Reset text color
+            doc.setTextColor(0, 0, 0);
+            
+            // Add receipt details
+            doc.setFontSize(12);
+            doc.text(`Receipt Number: ${document.getElementById('receiptNumber').textContent}`, 20, 45);
+            doc.text(`Date: ${document.getElementById('receiptDate').textContent}`, 20, 55);
+            doc.text(`Application ID: ${document.getElementById('receiptAppId').textContent}`, 20, 65);
+            
+            // Add student information
+            doc.setFontSize(14);
+            doc.setTextColor(26, 54, 93);
+            doc.text('STUDENT INFORMATION', 20, 80);
+            doc.setDrawColor(233, 185, 73);
+            doc.line(20, 82, 190, 82);
+            
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Name: ${document.getElementById('receiptStudentName').textContent}`, 20, 90);
+            doc.text(`Course: ${document.getElementById('receiptCourse').textContent}`, 20, 100);
+            doc.text(`Email: ${document.getElementById('receiptEmail').textContent}`, 20, 110);
+            doc.text(`Phone: ${document.getElementById('receiptPhone').textContent}`, 20, 120);
+            
+            // Add payment information
+            doc.setFontSize(14);
+            doc.setTextColor(26, 54, 93);
+            doc.text('PAYMENT DETAILS', 20, 135);
+            doc.setDrawColor(233, 185, 73);
+            doc.line(20, 137, 190, 137);
+            
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text(`Transaction ID: ${document.getElementById('receiptTransactionId').textContent}`, 20, 147);
+            doc.text(`Payment Method: ${document.getElementById('receiptPaymentMethod').textContent}`, 20, 157);
+            doc.text('Amount: ₹ 5,000.00', 20, 167);
+            doc.text('Status: Success', 20, 177);
+            
+            // Add footer
+            doc.setFontSize(10);
+            doc.setTextColor(100, 100, 100);
+            doc.text('This is a computer-generated receipt and does not require a physical signature.', 105, 200, { align: 'center' });
+            doc.text('Thank you for choosing Janavikas Institute of Technology!', 105, 210, { align: 'center' });
+            
+            // Save the PDF
+            doc.save(`Fee-Receipt-${document.getElementById('receiptNumber').textContent}.pdf`);
         }
 
         // Go back to courses page
@@ -1211,12 +1620,30 @@
             document.querySelector('.courses-section').style.display = 'block';
             document.querySelector('footer').style.display = 'block';
             
-            // Hide payment page
+            // Hide payment and receipt pages
             document.getElementById('paymentPage').style.display = 'none';
+            document.getElementById('feeReceiptPage').style.display = 'none';
             
             // Reset form
             document.getElementById('applicationForm').reset();
         }
+
+        // Fee Receipt Link Handler
+        document.getElementById('feeReceiptLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Hide main content
+            document.querySelector('.page-header').style.display = 'none';
+            document.querySelector('.courses-section').style.display = 'none';
+            document.querySelector('footer').style.display = 'none';
+            
+            // Show receipt page
+            document.getElementById('feeReceiptPage').style.display = 'block';
+            
+            // Hide receipt display initially
+            document.getElementById('receiptDisplay').style.display = 'none';
+            document.getElementById('searchResult').style.display = 'none';
+        });
 
         // Mobile Menu Toggle
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
